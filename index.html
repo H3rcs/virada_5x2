@@ -185,7 +185,6 @@ textarea{width:100%;min-height:150px;border:1.5px solid var(--borda);border-radi
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ceu:linear-gradient(180deg,#070B1A 0,#0B1524 420px);--brilho1:rgba(255,122,46,.20);--brilho2:rgba(120,166,245,.20);--sombra:0 1px 0 rgba(255,255,255,.06) inset,0 14px 34px -14px rgba(0,0,0,.8);--vidro:rgba(13,22,40,.82);--heroi:linear-gradient(155deg,#0A1022 0,#1B1F52 46%,#7A2E12 84%,#E8590C 100%);--neon:0 0 22px -4px}}
 :root[data-theme="dark"]{--ceu:linear-gradient(180deg,#070B1A 0,#0B1524 420px);--brilho1:rgba(255,122,46,.20);--brilho2:rgba(120,166,245,.20);--sombra:0 1px 0 rgba(255,255,255,.06) inset,0 14px 34px -14px rgba(0,0,0,.8);--vidro:rgba(13,22,40,.82);--heroi:linear-gradient(155deg,#0A1022 0,#1B1F52 46%,#7A2E12 84%,#E8590C 100%);--neon:0 0 22px -4px}
 body{background:var(--papel);background-image:radial-gradient(520px 300px at 88% 120px,var(--brilho1),transparent 70%),radial-gradient(460px 320px at 0 420px,var(--brilho2),transparent 70%),var(--ceu);background-attachment:fixed;background-repeat:no-repeat}
-#ceu{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
 #app,.barra{position:relative;z-index:1}
 .barra{position:fixed;background:var(--vidro);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 h2{font-size:29px;font-weight:800;letter-spacing:-.025em;font-stretch:88%}
@@ -278,19 +277,76 @@ header.topo{background:var(--vidro);-webkit-backdrop-filter:blur(14px);backdrop-
 @keyframes sobe{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes cresce{from{transform:scaleY(.05)}to{transform:scaleY(1)}}
 @keyframes pop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
-#app.entra>*{animation:sobe .45s cubic-bezier(.2,.8,.2,1) both}
-#app.entra>*:nth-child(2){animation-delay:.04s}#app.entra>*:nth-child(3){animation-delay:.09s}#app.entra>*:nth-child(4){animation-delay:.14s}#app.entra>*:nth-child(5){animation-delay:.19s}#app.entra>*:nth-child(n+6){animation-delay:.24s}
-#app.entra>header.topo{animation:none}
+#app.entra .anim>*{animation:sobe .45s cubic-bezier(.2,.8,.2,1) both}
+#app.entra .anim>*:nth-child(2){animation-delay:.04s}#app.entra .anim>*:nth-child(3){animation-delay:.09s}#app.entra .anim>*:nth-child(4){animation-delay:.14s}#app.entra .anim>*:nth-child(5){animation-delay:.19s}#app.entra .anim>*:nth-child(n+6){animation-delay:.24s}
 #app.entra .col .b{animation:cresce .7s cubic-bezier(.2,.8,.2,1) .25s both}
 #app.entra .tiles .tile{animation:pop .4s cubic-bezier(.2,1.2,.3,1) both}
 #app.entra .tiles .tile:nth-child(2){animation-delay:.07s}#app.entra .tiles .tile:nth-child(3){animation-delay:.14s}#app.entra .tiles .tile:nth-child(4){animation-delay:.21s}
-@media (prefers-reduced-motion:reduce){#app.entra>*,#app.entra .col .b,#app.entra .tiles .tile{animation:none}.sete .v i{animation:none;opacity:1}.tira .esc .de{animation:none;opacity:0}.tira .esc .para{animation:none;opacity:1}.bt,.chip,.dia,.rb{transition:none}}
+@media (prefers-reduced-motion:reduce){#app.entra .anim>*,#app.entra .col .b,#app.entra .tiles .tile{animation:none}.sete .v i{animation:none;opacity:1}.tira .esc .de{animation:none;opacity:0}.tira .esc .para{animation:none;opacity:1}.bt,.chip,.dia,.rb{transition:none}}
 section{scroll-margin-top:calc(var(--topoh,56px) + 62px)}
+
+/* ---------- estrutura das telas ---------- */
+.tela,.lado,.corpo,.ini-a,.ini-b{display:flex;flex-direction:column;gap:16px;min-width:0}
+.cta-pc{display:none}
+.fns{display:flex;flex-direction:column;gap:10px}
+/* ---------- computador ---------- */
+@media (min-width:1000px){
+  html{overflow-x:clip}
+  #app{max-width:1240px;padding:0 40px calc(120px + env(safe-area-inset-bottom));gap:36px}
+  header.topo{margin:0 calc(50% - 50vw);padding:14px calc(50vw - 50%);display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:40px}
+  header.topo .marca{display:contents}
+  header.topo .marca>b{grid-column:1;grid-row:1}
+  header.topo .marca>.dir{grid-column:3;grid-row:1}
+  header.topo .etapas{grid-column:2;grid-row:1;width:100%;max-width:640px;justify-self:center}
+  .etapas li{font-size:11.5px}
+  .barra{background:var(--vidro);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+  .barra .in{max-width:1160px;display:flex;justify-content:flex-end;gap:12px}
+  .barra .bt{width:auto;min-width:210px;padding-left:28px;padding-right:28px}
+  .barra.um{display:none}
+  #app:has(.t0){padding-bottom:48px}
+  /* início */
+  .t0{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:64px;align-items:center;min-height:calc(100vh - var(--topoh,70px) - 110px)}
+  .t0 .heroi{padding:34px 32px 30px;border-radius:30px;gap:26px}
+  .t0 .heroi .anel{width:150px;height:150px}
+  .t0 .heroi .anel .c b{font-size:52px}
+  .t0 .heroi .h-top p{font-size:20px;line-height:1.45}
+  .t0 .sete div{font-size:19px}
+  .t0 .ini-b{gap:20px}
+  .t0 .ini-b .tit h2{font-size:40px;line-height:1.08}
+  .t0 .ini-b .tit .ic{width:58px;height:58px;border-radius:18px}
+  .t0 .ini-b>.sub{font-size:17.5px}
+  .t0 .lista li{font-size:16.5px}
+  .t0 .credito{text-align:left}
+  .cta-pc{display:flex;align-self:flex-start;min-width:280px;font-size:18px;padding:16px 32px}
+  /* passos e resultado: coluna lateral fixa + conteúdo */
+  .tela:not(.t0){display:grid;grid-template-columns:340px minmax(0,1fr);gap:56px;align-items:start}
+  .t5{grid-template-columns:380px minmax(0,1fr)}
+  .lado{position:sticky;top:calc(var(--topoh,70px) + 28px);gap:18px}
+  .lado .tit{grid-template-columns:1fr;gap:16px}
+  .lado .tit .ic{width:58px;height:58px;border-radius:18px}
+  .lado .tit h2{font-size:34px;line-height:1.1}
+  .lado>.sub{font-size:16.5px}
+  .corpo{max-width:820px;gap:20px}
+  .t5 .corpo{max-width:none;gap:40px}
+  .corpo .cartao{padding:20px 22px}
+  .lado .tiles{grid-template-columns:1fr 1fr}
+  .lado .abas{position:static;margin:0;padding:0;background:none;border:0;-webkit-backdrop-filter:none;backdrop-filter:none;flex-direction:column;gap:6px;overflow:visible}
+  .lado .abas button{text-align:left;border-radius:12px;padding:11px 16px;font-size:15px;box-shadow:none}
+  .lado .abas button:hover{border-color:var(--laranja);color:var(--laranja)}
+  .t5 section{scroll-margin-top:calc(var(--topoh,70px) + 24px);display:flex;flex-direction:column;gap:16px}
+  .t5 .ests{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .lado .tile .v{font-size:clamp(22px,2.3vw,34px);white-space:nowrap}
+  .t5 .lado{max-height:calc(100vh - var(--topoh,70px) - 130px);overflow-y:auto;padding:6px;margin:-6px;scrollbar-width:thin}
+  .t5 .lado .tit h2{font-size:28px}
+  .lado .abas{display:grid;grid-template-columns:1fr 1fr}
+  .bt,.chip,.dia,.rb,.abas button{cursor:pointer}
+}
+@media (min-width:1000px) and (max-width:1199px){.tela:not(.t0){grid-template-columns:280px minmax(0,1fr);gap:40px}.t5{grid-template-columns:320px minmax(0,1fr)}}
+@media (min-width:1200px){.fnl,.fns{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}.fnl>*,.fns>*{min-width:0}}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="p" viewBox="0 0 12 16"><circle cx="6" cy="3.6" r="3"/><path d="M1 15.4c0-5.2 2-7.6 5-7.6s5 2.4 5 7.6z"/></symbol></svg>
-<canvas id="ceu" aria-hidden="true"></canvas>
 <div id="app"></div>
 <div class="barra" id="barra"></div>
 
@@ -415,11 +471,11 @@ function tInicio(){
   var n=diasAte(PRAZO),tot=61,frac=Math.max(0,Math.min(1,1-n/tot)),C=2*Math.PI*52;
   var dias=['S','T','Q','Q','S','S','D'],tira='';
   dias.forEach(function(l,i){tira+=i===6?'<div class="f">'+l+'<small>folga</small></div>':i===0?'<div class="v">'+l+'<i>'+l+'<small>folga</small></i></div>':'<div>'+l+'</div>';});
-  return '<div class="heroi"><div class="h-top"><div class="anel"><svg viewBox="0 0 120 120"><circle class="tr" cx="60" cy="60" r="52"/><circle class="pg" cx="60" cy="60" r="52" stroke-dasharray="'+(C*frac).toFixed(1)+' '+C.toFixed(1)+'"/></svg><div class="c"><b>'+(n>0?n:'0')+'</b><span>'+(n===1?'dia':'dias')+'</span></div></div><p>'+(n>0?'para a escala 5x2 ser obrigatória. Em <b>16/12/2026</b> toda empresa passa a dar duas folgas por semana.':'A regra já vale: desde <b>16/12/2026</b> toda empresa precisa dar duas folgas por semana.')+'</p></div>'+
-  '<div class="tira" aria-hidden="true"><div class="cab"><span>A semana de quem trabalha</span><span class="esc"><span class="de">6x1</span><span class="para">5x2</span></span></div><div class="sete">'+tira+'</div></div></div>'+
+  return '<div class="ini-a"><div class="heroi"><div class="h-top"><div class="anel"><svg viewBox="0 0 120 120"><circle class="tr" cx="60" cy="60" r="52"/><circle class="pg" cx="60" cy="60" r="52" stroke-dasharray="'+(C*frac).toFixed(1)+' '+C.toFixed(1)+'"/></svg><div class="c"><b>'+(n>0?n:'0')+'</b><span>'+(n===1?'dia':'dias')+'</span></div></div><p>'+(n>0?'para a escala 5x2 ser obrigatória. Em <b>16/12/2026</b> toda empresa passa a dar duas folgas por semana.':'A regra já vale: desde <b>16/12/2026</b> toda empresa precisa dar duas folgas por semana.')+'</p></div>'+
+  '<div class="tira" aria-hidden="true"><div class="cab"><span>A semana de quem trabalha</span><span class="esc"><span class="de">6x1</span><span class="para">5x2</span></span></div><div class="sete">'+tira+'</div></div></div></div><div class="ini-b">'+
   tit('rumo','','Guia de transição','Compare os caminhos e monte o plano da sua empresa')+'<p class="sub">Não existe uma saída única. Você responde quatro perguntas e o guia compara, com os seus números, as opções que os empresários estão usando.</p>'+
   '<ul class="lista"><li><b class="n">1</b><span><b>Quatro caminhos lado a lado.</b> Rodízio de folgas, fechar um dia, encurtar o horário ou 12x36, com ou sem aumento de preço.</span></li><li><b class="n">2</b><span><b>A conta de cada um.</b> Pessoas a mais, custo, vendas perdidas e resultado no mês.</span></li><li><b class="n">3</b><span><b>Escala pronta por função.</b> Quem folga em que dia, sem deixar função descoberta.</span></li><li><b class="n">4</b><span><b>Lei e plano com datas.</b> O que o acordo com o sindicato muda e o que fazer em cada semana.</span></li></ul>'+
-  '<p class="aviso">Suas respostas ficam só neste aparelho. Este guia orienta o planejamento e não substitui advogado nem contador.</p><p class="credito">Projeto criado por participantes do Empretec · Feira de Santana · 2026</p>';
+  '<button class="bt cta-pc" data-nav="1">Começar o diagnóstico</button><p class="aviso">Suas respostas ficam só neste aparelho. Este guia orienta o planejamento e não substitui advogado nem contador.</p><p class="credito">Projeto criado por participantes do Empretec · Feira de Santana · 2026</p></div>';
 }
 function tEmpresa(){
   return tit('loja','','Passo 1 · Empresa','Qual é o seu negócio?')+
@@ -498,7 +554,7 @@ function tRes(){
   h+='<div class="cartao"><h3>Pessoas presentes em cada dia</h3><div class="semana">';
   for(d=0;d<7;d++){var ab=!!B.dias[d];h+='<div class="col'+(ab?(S.mov[d]===1?' fraco':S.mov[d]===3?' forte':''):' fech')+'"><span class="q">'+(ab?B.totV[d]:'')+'</span><div class="barras"><div class="b" style="height:'+(ab?Math.max(4,Math.round(B.totV[d]/mx*100)):0)+'%"></div></div><span class="d">'+DN[d]+'</span><span class="p">'+(ab?(S.mov[d]===1?'fraco':S.mov[d]===3?'forte':'médio'):'fechado')+'</span></div>';}
   h+='</div><p class="sub">'+(B.d12?'Na 12x36, metade de cada função está presente por dia.':B.r===0?'Com dois dias fechados, todos folgam juntos e a equipe fica completa nos dias abertos.':'As folgas foram para os dias de menor movimento. Em laranja, os dias fortes.')+(B.H?' O número já conta as vagas sugeridas.':'')+'</p></div>';
-  B.fs.forEach(function(f){
+  h+='<div class="fns">';B.fs.forEach(function(f){
     var al=f.pior<f.m;
     h+='<div class="fn'+(al?' al':'')+'"><div class="fh"><b>'+esc(f.F.n)+'</b><span>'+f.q+(f.q===1?' pessoa':' pessoas')+' · mínimo '+f.m+'</span></div>';
     f.grupos.forEach(function(g,j){var c=j%7+1;
@@ -506,7 +562,7 @@ function tRes(){
     if(f.falha)h+='<span class="pil ru">Não fecha nem com contratação: reveja o mínimo</span>';
     else if(f.h)h+='<span class="pil vg">'+(S.contratar==='nao'?'Falta '+f.h+': treine alguém de outra função para cobrir':'Contratar '+f.h+' para garantir o mínimo')+'</span>';
     else h+='<span class="pil ok">No pior dia ficam '+f.pior+' (mínimo '+f.m+')</span>';
-    h+='</div>';});
+    h+='</div>';});h+='</div>';
   if(B.r===2)h+='<p class="aviso">Uma das folgas deve cair, de preferência, no domingo. Como a empresa abre todos os dias, troque os grupos de posição a cada mês para todos passarem pelo domingo.</p>';
   h+='</section>';
 
@@ -565,7 +621,14 @@ function valida(){
 }
 function desenha(sobe){
   var app=$('#app');app.classList.toggle('entra',!!sobe);
-  app.innerHTML=topo()+TELAS[S.tela]()+(S.tela<5?'<p class="erro" role="alert">'+esc(erro)+'</p>':'');
+  app.innerHTML=topo()+'<main class="tela t'+S.tela+(S.tela?'':' anim')+'">'+TELAS[S.tela]()+(S.tela<5?'<p class="erro" role="alert">'+esc(erro)+'</p>':'')+'</main>';
+  if(S.tela){var tl=app.querySelector('main.tela'),ld=document.createElement('aside'),cp=document.createElement('div'),k=tl.firstElementChild;
+    ld.className='lado anim';cp.className='corpo anim';
+    if(k){ld.appendChild(k);}
+    while(tl.firstElementChild&&tl.firstElementChild.matches('p.sub'))ld.appendChild(tl.firstElementChild);
+    ['#o-tiles','nav.abas'].forEach(function(q){var el=tl.querySelector(':scope > '+q);if(el)ld.appendChild(el);});
+    while(tl.firstChild)cp.appendChild(tl.firstChild);
+    tl.appendChild(ld);tl.appendChild(cp);}
   var tp=app.querySelector('header.topo');if(tp)document.documentElement.style.setProperty('--topoh',tp.offsetHeight+'px');
   var b=$('#barra');
   if(S.tela===0){b.className='barra um';b.innerHTML='<div class="in"><button class="bt" data-nav="1">Começar</button></div>';}
@@ -611,24 +674,6 @@ document.addEventListener('change',function(e){if(e.target.dataset.sl){var y=win
 try{var tm=localStorage.getItem(CT);if(tm==='dark'||tm==='light')document.documentElement.setAttribute('data-theme',tm);}catch(e){}
 try{var o=JSON.parse(localStorage.getItem(CH)||'null');if(o&&o.v===1&&Array.isArray(o.fn)){var p0=padrao();for(var k in p0)if(o[k]===undefined)o[k]=p0[k];S=o;}}catch(e){}
 desenha(true);
-/* céu: estrelas à noite, poeira de luz ao amanhecer */
-(function(){
-  var cv=$('#ceu');if(!cv||!cv.getContext)return;var cx=cv.getContext('2d'),W=0,H=0,P=[],quieto=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function mede(){var r=Math.min(window.devicePixelRatio||1,2);W=window.innerWidth;H=window.innerHeight;cv.width=W*r;cv.height=H*r;cx.setTransform(r,0,0,r,0,0);}
-  function sem(i){var x=Math.sin(i*127.1)*43758.5453;return x-Math.floor(x);}
-  for(var i=0;i<70;i++)P.push({x:sem(i+1),y:sem(i+77),r:.6+sem(i+9)*1.6,v:.15+sem(i+31)*.5,f:sem(i+53)*6.28});
-  function quadro(t){
-    var esc=temaEscuro();cx.clearRect(0,0,W,H);
-    P.forEach(function(p,i){
-      var y=((p.y*H-(quieto?0:t*.004*p.v))%H+H)%H,x=p.x*W+Math.sin(t*.0004+p.f)*8,a=esc?(.35+.45*Math.abs(Math.sin(t*.001*p.v+p.f))):.04+.05*Math.abs(Math.sin(t*.0006+p.f));
-      cx.beginPath();cx.arc(x,y,esc?p.r:p.r*4,0,6.283);cx.fillStyle=esc?'rgba(233,238,247,'+a+')':(i%3?'rgba(232,89,12,'+a+')':'rgba(28,79,161,'+a+')');cx.fill();});
-    if(!quieto&&!document.hidden)requestAnimationFrame(quadro);
-  }
-  mede();window.addEventListener('resize',function(){mede();if(quieto)quadro(0);});
-  document.addEventListener('visibilitychange',function(){if(!document.hidden&&!quieto)requestAnimationFrame(quadro);});
-  document.addEventListener('click',function(e){if(quieto&&e.target.closest('[data-tema]'))setTimeout(function(){quadro(0);},30);});
-  requestAnimationFrame(quadro);
-})();
 })();
 </script>
 </body>
