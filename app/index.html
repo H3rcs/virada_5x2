@@ -630,6 +630,7 @@ function chkCod(r){var h=h53('v5x2|'+r+'|feira-2026'),o='';for(var i=0;i<4;i++){
 function limpaCod(c){return String(c||'').toUpperCase().replace(/[^A-Z0-9]/g,'');}
 function codOk(c){c=limpaCod(c);
   if(c==='EMPRETEC')return Date.now()<new Date(2026,10,15).getTime();
+  if(c==='INVESTIDOR')return Date.now()<new Date(2027,0,1).getTime();
   if(c.length===12&&c.slice(0,4)==='V5X2'){var r=c.slice(4,8);return /^[A-HJ-NP-Z2-9]{4}$/.test(r)&&chkCod(r)===c.slice(8);}
   return false;}
 function temAcesso(){if(liberadoMem)return true;try{return codOk(localStorage.getItem(CA));}catch(e){return false;}}
@@ -655,7 +656,7 @@ document.addEventListener('submit',function(e){if(!e.target||e.target.id!=='f-co
 /* ---------- pesquisa anônima ---------- */
 var tPesq=null;
 function faixaFat(f){f=+f||0;if(!f)return 'não informado';if(f<20000)return 'até 20 mil';if(f<50000)return '20 a 50 mil';if(f<100000)return '50 a 100 mil';if(f<300000)return '100 a 300 mil';return 'acima de 300 mil';}
-function tipoAcesso(){var c='';try{c=localStorage.getItem(CA)||'';}catch(e){}if(c==='EMPRETEC')return 'cortesia Empretec';if(c.indexOf('V5X2HTMT')===0)return 'Hotmart';return c?'código':'';}
+function tipoAcesso(){var c='';try{c=localStorage.getItem(CA)||'';}catch(e){}if(c==='EMPRETEC')return 'cortesia Empretec';if(c==='INVESTIDOR')return 'demonstração';if(c.indexOf('V5X2HTMT')===0)return 'Hotmart';return c?'código':'';}
 function agendaPesquisa(){clearTimeout(tPesq);tPesq=setTimeout(enviaPesquisa,1500);}
 function enviaPesquisa(){
   var C=window.V5X2||{},U=C.respostas;if(!U||S.anon===false||S.tela!==5)return;
