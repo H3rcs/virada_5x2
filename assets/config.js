@@ -6,5 +6,5 @@ window.V5X2 = {
   hotmart: 'https://pay.hotmart.com/C108465078S',
   whats: '5575991019893',
   acesso: 'V5X2-HTMT-8LWE',
-  respostas: ''
+  respostas: 'https://script.google.com/macros/s/AKfycbzgY6xu8ktkfmABQxNDv6NyCCb7Au9oJ0JTWill9T_cKBkDPxyr0_bZGTEC0Z9g7sm6/exec'
 };
