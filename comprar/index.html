@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Comprar acesso · Virada 5x2</title>
-<meta name="description" content="Acesso ao guia Virada 5x2 por R$ 30 no lançamento. Pague por Pix ou cartão e receba o código pelo WhatsApp.">
+<meta name="description" content="Acesso ao guia Virada 5x2 por R$ 9,90 no lançamento. Pague por Pix ou cartão e receba o código pelo WhatsApp.">
 <meta name="theme-color" content="#0B1524">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2310243E'/%3E%3Cpath d='M5 22h22' stroke='%23FFD43B' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M9 22a7 7 0 0 1 14 0' fill='%23E8590C'/%3E%3Cpath d='M16 8v3M8.5 11.5l2 2M23.5 11.5l-2 2' stroke='%23FFD43B' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Onest:wght@400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/config.js"></script>
 <style>
 .compra{background:radial-gradient(700px 420px at 95% 0,rgba(232,89,12,.22),transparent 70%),radial-gradient(600px 400px at 0 30%,rgba(28,79,161,.14),transparent 70%),var(--papel);min-height:100vh}
 .compra .wrap{display:grid;gap:26px;padding-top:36px;padding-bottom:64px}
@@ -64,8 +65,8 @@
 
     <aside class="resumo">
       <span class="fita">Preço de lançamento</span>
-      <h1 style="font-size:32px;color:#fff">Acesso ao guia Virada 5x2</h1>
-      <div class="valor"><b>R$ 30</b><small>pagamento único</small></div>
+      <h1 style="font-size:32px;color:#fff">Simulador Virada 5x2</h1>
+      <div class="valor"><s>R$ 30</s><b>R$ 9,90</b><small>pagamento único</small></div>
       <ul class="lista-ok" style="font-size:16px">
         <li><span>Os 4 caminhos comparados com os seus números</span></li>
         <li><span>Escala por função e plano com datas até 16/12</span></li>
@@ -76,8 +77,20 @@
 
     <div style="display:flex;flex-direction:column;gap:22px">
 
+      <section class="cartao etapa" id="hm" hidden>
+        <div class="num"><i>1</i><h2>Pague pela Hotmart</h2></div>
+        <p>O pagamento é feito na página segura da Hotmart. Você escolhe <b>Pix</b> ou <b>cartão de crédito</b> e recebe o recibo por e-mail.</p>
+        <div class="marcas-c"><span>Pix</span><span>Visa</span><span>Mastercard</span><span>Elo</span><span>Hipercard</span><span>Amex</span></div>
+        <a class="bt" id="bt-hm" href="#">Ir para o pagamento seguro
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="num" style="margin-top:8px"><i>2</i><h2>Pronto, o guia libera sozinho</h2></div>
+        <p class="suave">Assim que o pagamento é aprovado, você volta para cá com o guia já liberado no seu aparelho. O link de acesso também chega no seu e-mail.</p>
+        <p class="nota">Ficou alguma dúvida? <a href="https://wa.me/5575991019893" target="_blank" rel="noopener">Fale com a equipe no WhatsApp</a>.</p>
+      </section>
+
+      <div id="manual" style="display:flex;flex-direction:column;gap:22px">
       <section class="cartao etapa">
-        <div class="num"><i>1</i><h2>Pague R$ 30</h2></div>
+        <div class="num"><i>1</i><h2>Pague R$ 9,90</h2></div>
         <div class="abas" role="tablist" aria-label="Forma de pagamento">
           <button role="tab" id="t-pix" aria-selected="true" aria-controls="p-pix" data-aba="pix">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 9-9 9-9-9z"/><path d="M8 12h8"/></svg>Pix</button>
@@ -86,9 +99,9 @@
         </div>
 
         <div id="p-pix" role="tabpanel" aria-labelledby="t-pix" class="pix">
-          <img class="qr" src="../assets/pix-qr.svg" alt="QR code do Pix de R$ 30 para a Virada 5x2" width="220" height="220">
+          <img class="qr" src="../assets/pix-qr.svg" alt="QR code do Pix de R$ 9,90 para a Virada 5x2" width="220" height="220">
           <div style="display:flex;flex-direction:column;gap:14px">
-            <p>Abra o app do seu banco, escolha <b>Pix › Ler QR code</b> ou <b>Pix copia e cola</b>. O valor de <b>R$ 30,00</b> já vem preenchido.</p>
+            <p>Abra o app do seu banco, escolha <b>Pix › Ler QR code</b> ou <b>Pix copia e cola</b>. O valor de <b>R$ 9,90</b> já vem preenchido.</p>
             <div class="campo-copia">
               <label for="c-pix">Pix copia e cola</label>
               <div><input id="c-pix" readonly><button class="copiar" data-copia="c-pix">Copiar</button></div>
@@ -97,14 +110,14 @@
               <label for="c-chave">Ou use a chave (celular)</label>
               <div><input id="c-chave" readonly value="+55 75 99101-9893"><button class="copiar" data-copia="c-chave" data-valor="+5575991019893">Copiar</button></div>
             </div>
-            <p class="nota">Antes de confirmar, seu banco mostra o nome do titular da conta que recebe. Confira o valor: <b>R$ 30,00</b>.</p>
+            <p class="nota">Antes de confirmar, seu banco mostra o nome do titular da conta que recebe. Confira o valor: <b>R$ 9,90</b>.</p>
           </div>
         </div>
 
         <div id="p-cartao" role="tabpanel" aria-labelledby="t-cartao" class="cartao-pg" hidden>
           <p>Pague com cartão de crédito numa página segura de pagamento. Seus dados do cartão não passam pela Virada 5x2.</p>
           <div class="marcas-c"><span>Visa</span><span>Mastercard</span><span>Elo</span><span>Hipercard</span><span>Amex</span></div>
-          <a class="bt azul" id="bt-cartao" href="#" target="_blank" rel="noopener">Pagar R$ 30 com cartão</a>
+          <a class="bt azul" id="bt-cartao" href="#" target="_blank" rel="noopener">Pagar R$ 9,90 com cartão</a>
           <p class="suave" id="cartao-txt" style="font-size:14.5px"></p>
         </div>
       </section>
@@ -131,6 +144,7 @@
         <p class="suave">A equipe confere o pagamento e responde com um link que já libera o guia no seu aparelho. Em horário comercial, no mesmo dia. Se recebeu um código, digite na tela do guia.</p>
         <a class="bt claro" href="../app/" style="align-self:flex-start">Já tenho meu código</a>
       </section>
+      </div>
 
     </div>
   </div>
@@ -148,18 +162,20 @@
 (function(){
   /* ===== Configuração ===== */
   var WHATS='5575991019893';
-  var PIX='00020126360014br.gov.bcb.pix0114+5575991019893520400005303986540530.005802BR5910VIRADA 5X26015FEIRA DE SANTAN62130509VIRADA5X2630488F4';
+  var PIX='00020126360014br.gov.bcb.pix0114+557599101989352040000530398654049.905802BR5910VIRADA 5X26015FEIRA DE SANTAN62130509VIRADA5X263040E98';
   /* Cole aqui o link de pagamento com cartão (Mercado Pago, InfinitePay, PagSeguro...). Vazio = o cliente pede o link pelo WhatsApp. */
   var LINK_CARTAO='';
   /* ======================== */
   var $=function(s){return document.getElementById(s);};
+  var C=window.V5X2||{};
+  if(C.hotmart){$('hm').hidden=false;$('manual').style.display='none';$('bt-hm').href=C.hotmart;}
   var forma='Pix';
   $('c-pix').value=PIX;
 
   var bc=$('bt-cartao');
   if(LINK_CARTAO){bc.href=LINK_CARTAO;$('cartao-txt').textContent='Depois de pagar, volte aqui e mande o comprovante no passo 2.';}
   else{bc.textContent='Pedir o link do cartão no WhatsApp';
-    bc.href='https://wa.me/'+WHATS+'?text='+encodeURIComponent('Olá! Quero comprar o acesso ao guia Virada 5x2 (R$ 30) pagando com cartão. Pode me mandar o link de pagamento?');
+    bc.href='https://wa.me/'+WHATS+'?text='+encodeURIComponent('Olá! Quero comprar o acesso ao guia Virada 5x2 (R$ 9,90) pagando com cartão. Pode me mandar o link de pagamento?');
     $('cartao-txt').textContent='Enviamos o link de pagamento seguro pelo WhatsApp. Depois de pagar, mande o comprovante no passo 2.';}
 
   document.querySelectorAll('[data-aba]').forEach(function(b){b.addEventListener('click',function(){
@@ -176,7 +192,7 @@
   });});
 
   function msg(){
-    var t='Olá! Paguei o acesso ao guia Virada 5x2 (R$ 30) por '+forma+'. Segue o comprovante.\n\n'+
+    var t='Olá! Paguei o acesso ao guia Virada 5x2 (R$ 9,90) por '+forma+'. Segue o comprovante.\n\n'+
       'Nome: '+($('d-nome').value||'')+'\nEmpresa: '+($('d-empresa').value||'')+'\nCidade: '+($('d-cidade').value||'')+'\nSetor: '+$('d-setor').value;
     $('bt-wpp').href='https://wa.me/'+WHATS+'?text='+encodeURIComponent(t);
   }

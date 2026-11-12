@@ -130,6 +130,7 @@ section.bloco{padding:84px 0}
 .plano-pago{background:radial-gradient(500px 300px at 100% 0,rgba(255,122,46,.4),transparent 70%),linear-gradient(160deg,#14213D,#0B1524);color:#fff;border-radius:28px;padding:34px;display:flex;flex-direction:column;gap:20px;box-shadow:0 30px 60px -28px rgba(11,21,36,.8);border:1px solid rgba(255,255,255,.08)}
 .plano-pago .valor{display:flex;align-items:flex-end;gap:10px}
 .plano-pago .valor b{font-family:var(--display);font-size:84px;line-height:.9;letter-spacing:-.04em;font-stretch:84%}
+.plano-pago .valor s,.resumo .valor s{font-family:var(--display);font-size:26px;color:var(--noite-suave);padding-bottom:10px;text-decoration-thickness:2px}
 .plano-pago .valor small{font-size:16px;color:var(--noite-suave);padding-bottom:8px}
 .fita{align-self:flex-start;background:var(--amarelo);color:var(--tinta);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:6px 13px}
 .meios{display:flex;flex-wrap:wrap;gap:8px}

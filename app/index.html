@@ -344,6 +344,7 @@ section{scroll-margin-top:calc(var(--topoh,56px) + 62px)}
 @media (min-width:1000px) and (max-width:1199px){.tela:not(.t0){grid-template-columns:280px minmax(0,1fr);gap:40px}.t5{grid-template-columns:320px minmax(0,1fr)}}
 @media (min-width:1200px){.fnl,.fns{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}.fnl>*,.fns>*{min-width:0}}
 </style>
+<script src="../assets/config.js"></script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="p" viewBox="0 0 12 16"><circle cx="6" cy="3.6" r="3"/><path d="M1 15.4c0-5.2 2-7.6 5-7.6s5 2.4 5 7.6z"/></symbol></svg>
@@ -369,7 +370,7 @@ var SET={
   servicos:['Serviços',[['Atendente',5,2],['Técnico',4,2],['Administrativo',2,1]],[2,2,2,2,2,2,2],9],
   saude:['Saúde, vigilância ou limpeza',[['Recepcionista',3,1],['Técnico',6,3],['Limpeza',2,1]],[2,2,2,2,2,2,2],24]
 };
-function padrao(){return {v:1,tela:0,nome:'',setor:'',dias:[1,1,1,1,1,1,0],mov:[2,2,2,2,2,3,2],hd:9,fn:[],esc:'6x1',h0:44,acordo:'nsei',sal:2429.41,contratar:'talvez',publico:false,fat:0,mg:30,mig:50,preco:0,perda:0,estr:'',feito:{}};}
+function padrao(){return {v:1,tela:0,nome:'',setor:'',dias:[1,1,1,1,1,1,0],mov:[2,2,2,2,2,3,2],hd:9,fn:[],esc:'6x1',h0:44,acordo:'nsei',sal:2429.41,contratar:'talvez',publico:false,fat:0,mg:30,mig:50,preco:0,perda:0,estr:'',feito:{},rid:'',anon:true,env:''};}
 var S=padrao(),erro='';
 function $(s){return document.querySelector(s);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
@@ -608,6 +609,7 @@ function tRes(){
   /* enviar */
   var tx=resumoTxt(E);
   h+='<section id="s-enviar">'+sec('enviar','az','Guardar ou enviar')+'<div class="acoes"><a class="bt" href="https://wa.me/'+WHATS+'?text='+encodeURIComponent(tx)+'" target="_blank" rel="noopener">Falar com a equipe Virada 5x2 no WhatsApp</a><button class="bt sec" data-copiar="1">Copiar o resumo</button><p class="erro" id="msg-copia" role="status"></p><textarea id="tx-resumo" readonly aria-label="Resumo do plano" style="display:none">'+esc(tx)+'</textarea></div>'+
+  '<label class="cartao" style="flex-direction:row;align-items:flex-start;gap:12px;cursor:pointer"><input type="checkbox" data-anon="1"'+(S.anon!==false?' checked':'')+' style="margin-top:3px;flex:none"><span><b>Contribuir com a pesquisa Virada 5x2</b><br><span class="sub">Envia, sem identificação, o setor, o tamanho da equipe, os dias e horários e o caminho escolhido. Nunca envia nome, empresa ou contato. Ajuda a entender como as empresas estão fazendo a virada.</span></span></label>'+
   '<p class="aviso">A conta usa os seus números e os seus palpites de preço e de vendas. É um ponto de partida: valide a parte legal com advogado trabalhista e contador antes de publicar a escala.</p>'+
   '<div class="fontes"><b>Como a conta é feita</b><span>Pessoas a mais: o maior valor entre as vagas para manter o mínimo por função e as horas que faltam depois da redução da jornada. Custo: pessoas a mais vezes o salário médio, sem encargos. Vendas perdidas ao fechar um dia: a parte do faturamento daquele dia, pelo peso do movimento, menos o que volta em outro dia. Ao cortar 1 hora: metade do faturamento de uma hora média. Preço: aumento sobre o faturamento, descontando os clientes perdidos.</span><b>Fontes</b><span>Emenda Constitucional 141/2026 e prazos: <a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/congresso-promulga-emenda-do-fim-da-6x1-escala-5x2-comeca-em-60-dias" target="_blank" rel="noopener">Agência Brasil, 16/10/2026</a>.</span><span>Limite de 42 horas, acordo coletivo e 12x36: <a href="https://conjur.com.br/2026-out-25/fim-da-escala-6x1-o-que-ja-vale-e-o-que-ainda-vai-parar-na-justica/" target="_blank" rel="noopener">ConJur, 25/10/2026</a> (artigo de opinião).</span><span>Salário médio de admissão: <a href="https://agenciagov.ebc.com.br/noticias/202611/brasil-gera-121-3-mil-empregos-formais-em-setembro-e-saldo-no-ano-chega-a-1-24-milhao-de-novos-postos-com-carteira-assinada" target="_blank" rel="noopener">Novo Caged, setembro de 2026</a>.</span><span>Fiscalização e pagamento em dobro: <a href="https://csb.org.br/noticias/fim-escala-6x1-saiba-fazer-empresa-descumprir-nova-jornada" target="_blank" rel="noopener">CSB</a> e <a href="https://vlvadvogados.com/empresa-nao-cumpre-fim-da-escala-6x1/" target="_blank" rel="noopener">VLV Advogados</a>.</span><span>Decreto e folgas dentro do mês: <a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/governo-preve-decreto-do-fim-da-escala-6x1-para-segunda-feira" target="_blank" rel="noopener">Agência Brasil, 04/11/2026</a>.</span></div><p class="credito">Projeto criado por participantes do Empretec · Feira de Santana · 2026</p></section>';
   return h;
@@ -640,7 +642,7 @@ function tBloq(){
     '<form id="f-cod" class="cartao" autocomplete="off"><label class="rot" for="i-cod">Código de acesso</label>'+
     '<input type="text" id="i-cod" value="'+esc(codTmp)+'" placeholder="V5X2-XXXX-XXXX" autocapitalize="characters" spellcheck="false" style="font-family:var(--display);font-size:22px;letter-spacing:.06em;text-transform:uppercase">'+
     '<button class="bt" type="submit">Liberar acesso</button><p class="erro" role="alert">'+esc(erroCod)+'</p></form>'+
-    '<div class="cartao"><b style="font-family:var(--display);font-size:20px">Ainda não tem código?</b><p class="sub">Acesso por <b>R$ 30</b> no lançamento, pagamento único por Pix ou cartão.</p>'+
+    '<div class="cartao"><b style="font-family:var(--display);font-size:20px">Ainda não tem código?</b><p class="sub">Acesso por <b>R$ 9,90</b> no lançamento, pagamento único por Pix ou cartão.</p>'+
     '<a class="bt sec" href="../comprar/" style="text-align:center">Comprar acesso</a><a href="../" class="sub" style="text-align:center">Conhecer o Virada 5x2</a></div>'+
     '<p class="credito">Projeto criado por participantes do Empretec · Feira de Santana · 2026</p></div></main>';
 }
@@ -650,6 +652,23 @@ document.addEventListener('submit',function(e){if(!e.target||e.target.id!=='f-co
   else{erroCod=limpaCod(v)==='EMPRETEC'?'O código de cortesia EMPRETEC valeu até 14/11/2026.':(limpaCod(v)?'Código não reconhecido. Confira letras e números ou fale com a equipe no WhatsApp.':'Digite o código que você recebeu.');desenha();var i=$('#i-cod');if(i)i.focus();}
 });
 
+/* ---------- pesquisa anônima ---------- */
+var tPesq=null;
+function faixaFat(f){f=+f||0;if(!f)return 'não informado';if(f<20000)return 'até 20 mil';if(f<50000)return '20 a 50 mil';if(f<100000)return '50 a 100 mil';if(f<300000)return '100 a 300 mil';return 'acima de 300 mil';}
+function tipoAcesso(){var c='';try{c=localStorage.getItem(CA)||'';}catch(e){}if(c==='EMPRETEC')return 'cortesia Empretec';if(c.indexOf('V5X2HTMT')===0)return 'Hotmart';return c?'código':'';}
+function agendaPesquisa(){clearTimeout(tPesq);tPesq=setTimeout(enviaPesquisa,1500);}
+function enviaPesquisa(){
+  var C=window.V5X2||{},U=C.respostas;if(!U||S.anon===false||S.tela!==5)return;
+  try{var E=estrategias(),x=E.sel,m=E.melhor,L='STQQSSD';
+    if(!S.rid){S.rid=Date.now().toString(36)+Math.random().toString(36).slice(2,8);}
+    var p={id:S.rid,acesso:tipoAcesso(),setor:(SET[S.setor]&&SET[S.setor][0])||'Outro',pessoas:E.N,funcoes:fnOk().length,dias_abertos:E.D,
+      dias:S.dias.map(function(a,i){return a?L[i]:'-';}).join(''),horas_dia:S.hd,escala_atual:S.esc,horas_semana:S.h0,acordo:S.acordo,salario:Math.round(S.sal||0),
+      contratar:S.contratar,publico:S.publico?'sim':'não',faturamento_faixa:faixaFat(S.fat),margem:S.mg,caminho_escolhido:x.nome,melhor_caminho:m.nome,
+      pessoas_a_mais:Math.round(x.pes*10)/10,custo_mes:Math.round(x.custo),resultado_mes:Math.round(x.res),versao:'app-2026-11'};
+    var h=JSON.stringify(p);if(h===S.env)return;S.env=h;guarda();
+    fetch(U,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:h}).catch(function(){S.env='';});
+  }catch(e){}
+}
 function desenha(sobe){
   var app=$('#app');app.classList.toggle('entra',!!sobe);
   var bb=$('#barra');
@@ -665,6 +684,7 @@ function desenha(sobe){
     while(tl.firstChild)cp.appendChild(tl.firstChild);
     tl.appendChild(ld);tl.appendChild(cp);}
   var tp=app.querySelector('header.topo');if(tp)document.documentElement.style.setProperty('--topoh',tp.offsetHeight+'px');
+  if(S.tela===5)agendaPesquisa();
   var b=$('#barra');
   if(S.tela===0){b.className='barra um';b.innerHTML='<div class="in"><button class="bt" data-nav="1">Começar</button></div>';}
   else if(S.tela<5){b.className='barra';b.innerHTML='<div class="in"><button class="bt sec" data-nav="-1">Voltar</button><button class="bt" data-nav="1">'+(S.tela===4?'Ver minha estratégia':'Continuar')+'</button></div>';}
@@ -678,7 +698,7 @@ document.addEventListener('click',function(e){
   if(d.tema){var esc0=temaEscuro()?'light':'dark';document.documentElement.setAttribute('data-theme',esc0);try{localStorage.setItem(CT,esc0);}catch(e1){}desenha();return;}
   if(d.nav){var p=+d.nav;if(p>0){erro=valida();if(erro){desenha();return;}}erro='';S.tela=Math.max(0,Math.min(5,S.tela+p));guarda();desenha(true);return;}
   if(d.vai){S.tela=+d.vai;guarda();desenha(true);return;}
-  if(d.novo){if(!d.ok){b.dataset.ok='1';b.textContent='Confirmar: apagar tudo';return;}S=padrao();guarda();desenha(true);return;}
+  if(d.novo){if(!d.ok){b.dataset.ok='1';b.textContent='Confirmar: apagar tudo';return;}var an=S.anon;S=padrao();S.anon=an;guarda();desenha(true);return;}
   if(d.ir){var s=document.getElementById(d.ir);if(s)s.scrollIntoView({behavior:'smooth',block:'start'});return;}
   if(d.copiar){var tx=$('#tx-resumo'),m=$('#msg-copia'),cai=function(){tx.style.display='';tx.select();m.textContent='Selecione o texto abaixo e copie.';};
     if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(tx.value).then(function(){m.textContent='Resumo copiado.';},cai);else cai();return;}
@@ -701,6 +721,7 @@ document.addEventListener('input',function(e){
   else if(d.fn){if(S.fn[+d.fn])S.fn[+d.fn].n=i.value;}
   else if(d.numc)S[d.numc]=parseFloat(String(i.value).replace(',','.'))||0;
   else if(d.feito!==undefined)S.feito[d.feito]=i.checked;
+  else if(d.anon){S.anon=i.checked;if(S.anon){S.env='';agendaPesquisa();}}
   else if(d.sl){S[d.sl]=+i.value;$('#slv-'+d.sl).textContent=i.value+'%';var E=estrategias();$('#o-ests').innerHTML=cartoesEst(E);$('#o-tiles').innerHTML=tilesRes(E);}
   else return;
   guarda();

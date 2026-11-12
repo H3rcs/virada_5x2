@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Compra aprovada · Virada 5x2</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B1524">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2310243E'/%3E%3Cpath d='M5 22h22' stroke='%23FFD43B' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M9 22a7 7 0 0 1 14 0' fill='%23E8590C'/%3E%3Cpath d='M16 8v3M8.5 11.5l2 2M23.5 11.5l-2 2' stroke='%23FFD43B' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Onest:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/config.js"></script>
+<style>
+.ok{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 20px}
+.caixa{max-width:560px;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px}
+.selo-ok{width:112px;height:112px;border-radius:50%;background:linear-gradient(145deg,#22A06B,#0B7A53);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 12px rgba(63,203,152,.15),0 20px 50px -14px #0B7A53;animation:pulo .6s cubic-bezier(.2,1.6,.4,1) both}
+.selo-ok svg{width:58px;height:58px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.selo-ok path{stroke-dasharray:30;stroke-dashoffset:30;animation:traco .5s .35s ease forwards}
+@keyframes pulo{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+@keyframes traco{to{stroke-dashoffset:0}}
+.caixa h1{font-size:clamp(34px,6vw,48px);color:#fff}
+.caixa .lead{font-size:18px;color:var(--noite-suave)}
+.dicas{width:100%;background:var(--noite2);border:1px solid var(--noite-linha);border-radius:18px;padding:18px 20px;text-align:left;display:flex;flex-direction:column;gap:10px;font-size:15.5px;color:var(--noite-suave)}
+.dicas b{color:#fff}
+@media (prefers-reduced-motion:reduce){.selo-ok,.selo-ok path{animation:none;stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<main class="escuro heroi ok">
+  <div class="caixa">
+    <div class="selo-ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <p class="sobre">Compra aprovada</p>
+    <h1>Seu acesso ao guia está liberado.</h1>
+    <p class="lead">Obrigado por comprar o Virada 5x2. O guia já está liberado neste aparelho.</p>
+    <a class="bt" href="../app/" id="abrir" style="min-width:260px">Abrir o guia agora
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <div class="dicas">
+      <p><b>Em outro aparelho?</b> Abra o link de acesso que chegou no seu e-mail, enviado pela Hotmart.</p>
+      <p><b>Recibo:</b> também vai para o seu e-mail.</p>
+      <p><b>Ajuda:</b> <a href="https://wa.me/5575991019893" target="_blank" rel="noopener" style="color:#fff">WhatsApp (75) 99101-9893</a></p>
+    </div>
+  </div>
+</main>
+<script>
+(function(){
+  var C=window.V5X2||{},cod=C.acesso||'';
+  try{localStorage.setItem('virada5x2-acesso',cod.toUpperCase().replace(/[^A-Z0-9]/g,''));}catch(e){}
+  document.getElementById('abrir').href='../app/?codigo='+encodeURIComponent(cod);
+})();
+</script>
+</body>
+</html>
