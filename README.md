@@ -7,7 +7,7 @@ Site: https://h3rcs.github.io/virada_5x2/
 | Caminho | Para quê |
 |---|---|
 | `index.html` | Landing page do projeto |
-| `comprar/` | Página de compra do acesso (R$ 9,90 no lançamento): Pix com QR e copia e cola, cartão e envio do comprovante pelo WhatsApp |
+| `comprar/` | Página de compra do acesso (R$ 9,97 no lançamento): Pix com QR e copia e cola, cartão e envio do comprovante pelo WhatsApp |
 | `obrigado/` e `aguardando/` | Páginas para onde a Hotmart manda o comprador (compra aprovada libera o simulador na hora; pagamento em análise) |
 | `app/` | Guia Virada 5x2: compara os caminhos (rodízio, fechar um dia, uma hora a menos, 12x36) e monta o plano. Abre com código de acesso |
 | `assets/` | Estilos da landing e da compra, imagens do guia e QR do Pix |
