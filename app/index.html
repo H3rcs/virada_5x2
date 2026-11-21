@@ -395,6 +395,29 @@ section{scroll-margin-top:calc(var(--topoh,56px) + 62px)}
 .linha-t b{font-size:16px}.linha-t li>span:last-child{font-size:14px;color:var(--suave)}
 .abas button.on{background:var(--forte);color:var(--forte-txt);border-color:var(--forte)}
 @media (prefers-reduced-motion:reduce){#app.entra .pn-p i,.cv-curto{animation:none}}
+
+/* ---------- equipes com nomes ---------- */
+.eqf{background:var(--cartao);border:1px solid var(--linha);border-left:6px solid var(--c);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--sombra)}
+.eqf.al{border-color:var(--alerta);border-left-color:var(--alerta)}
+.eqf-h{display:flex;flex-direction:column;gap:1px}.eqf-h b{font-family:var(--display);font-size:19px}.eqf-h span{font-size:13.5px;color:var(--suave)}
+.eqg{display:grid;gap:8px}
+@media (max-width:420px){.eqg{grid-template-columns:1fr!important}}
+.eqc{background:var(--papel);border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.eqc-t{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:8px}.eqc-t b{font-size:15px}.eqc-t small{grid-column:1;font-size:12px;color:var(--suave)}
+.eqc-n{grid-row:1/3;grid-column:2;font-family:var(--display);font-weight:800;font-size:24px;color:var(--c)}
+.eqp{display:flex;align-items:center;gap:4px}
+.eqp input{padding:8px 9px!important;font-size:15px!important;border-radius:9px!important}
+.eqp.vg input{border-style:dashed!important;background:transparent!important}
+.eqm{flex:none;width:34px;height:38px;border-radius:9px;border:1px solid var(--linha);background:var(--cartao);font-size:20px;font-weight:800;color:var(--tinta);line-height:1}
+.eqm:disabled{opacity:.3}
+.eqdias{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.eqdias span{display:flex;flex-direction:column;align-items:center;font-size:11.5px;font-weight:700;color:var(--suave);background:var(--papel);border-radius:8px;padding:4px 0}
+.eqdias b{font-family:var(--display);font-size:17px;color:var(--tinta)}
+.eqdias .ru{background:var(--alerta);color:#fff}.eqdias .ru b{color:#fff}.eqdias .fe{opacity:.45}
+.eqop{display:flex;gap:8px;align-items:flex-start;font-size:14px}.eqop input{margin-top:2px;width:18px;height:18px;accent-color:var(--laranja)}
+@media print{body.imp-eq *{visibility:hidden}body.imp-eq #s-equipe,body.imp-eq #s-equipe *{visibility:visible}
+ body.imp-eq #s-equipe{position:absolute;left:0;top:0;width:100%}body.imp-eq .eqm,body.imp-eq [data-imprime],body.imp-eq .eqop{display:none!important}
+ body.imp-eq .eqf{break-inside:avoid;box-shadow:none}body.imp-eq .eqp input{border:0!important;padding:2px 0!important}}
 </style>
 <script src="../assets/config.js"></script>
 </head>
@@ -500,8 +523,9 @@ function stConv(st){return {acordo:['ok','Já trata da 5x2'],cct:['vg','Convenç
 /* horas que cada pessoa trabalha por semana na escala de cinco dias */
 function diaMax(){var c=conv();if(c&&c.e.r.dia)return c.e.r.dia;return 8.4;}
 function hCap(){return Math.min(hNovo(),Math.round(diaMax()*5*10)/10);}
-function padrao(){return {v:1,tela:0,nome:'',setor:'',dias:[1,1,1,1,1,1,0],mov:[2,2,2,2,2,3,2],hd:9,fn:[],esc:'6x1',h0:44,acordo:'nsei',acMan:false,cid:'',sal:2429.41,contratar:'talvez',publico:false,fat:0,mg:30,mig:50,preco:0,perda:0,estr:'',feito:{},rid:'',anon:true,env:''};}
+function padrao(){return {v:1,tela:0,nome:'',setor:'',dias:[1,1,1,1,1,1,0],mov:[2,2,2,2,2,3,2],hd:9,fn:[],esc:'6x1',h0:44,acordo:'nsei',acMan:false,cid:'',eq:{},semVaga:{},semEquil:{},sal:2429.41,contratar:'talvez',publico:false,fat:0,mg:30,mig:50,preco:0,perda:0,estr:'',feito:{},rid:'',anon:true,env:''};}
 var S=padrao(),erro='';
+function padEq(){if(!S.eq)S.eq={};if(!S.semVaga)S.semVaga={};if(!S.semEquil)S.semEquil={};}
 function $(s){return document.querySelector(s);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 function rs(v){return (v<0?'− ':'')+'R$ '+Math.round(Math.abs(v)).toLocaleString('pt-BR');}
@@ -541,8 +565,10 @@ function base(dias){
     function pior(sz){var n=sz.length,mx=0;for(var j=0;j<n;j++){var f=r===1?sz[j]:sz[j]+sz[(j+n-1)%n];if(f>mx)mx=f;}return mx;}
     if(r===0||!ab.length)best={h:Math.max(0,m-q),k:1};
     else{var kmin=r===1?2:3;
-      for(h=0;h<=80&&!best;h++)for(k=kmin;k<=ab.length;k++){if(q+h-pior(tam(q+h,k))>=m){best={h:h,k:k};break;}}
+      var hMax=S.semVaga&&S.semVaga[F.n]?0:80;
+      for(h=0;h<=hMax&&!best;h++)for(k=kmin;k<=ab.length;k++){if(q+h-pior(tam(q+h,k))>=m){best={h:h,k:k};break;}}
       if(!best)best={h:0,k:ab.length,falha:true};}
+    var desig=0;if(best.k>1&&!best.falha&&(q+best.h)%best.k){desig=best.k-(q+best.h)%best.k;if(!(S.semEquil&&S.semEquil[F.n])&&!(S.semVaga&&S.semVaga[F.n]))best.h+=desig;}
     var T=q+best.h;k=best.k;var sz=tam(T,k),dEsc=ord.slice(0,k),cal=dEsc.slice().sort(function(a,b){return a-b;}),vv=[],falta=best.h,ix=k-1,gd=0;
     for(i=0;i<k;i++)vv.push(0);
     while(falta>0&&gd<999){if(vv[ix]<sz[ix]){vv[ix]++;falta--;}ix=(ix+k-1)%k;gd++;}
@@ -551,7 +577,7 @@ function base(dias){
       var of=g.f.slice();if(of.length===2&&of[0]===0&&of[1]===6)of=[6,0];g.rot=of.length?'folga '+lista(of.map(function(x){return DL[x];})):'sem folga definida';return g;});
     var presV=[];
     for(d=0;d<7;d++){if(!dias[d]){presV.push(0);continue;}var a=0;grupos.forEach(function(g){if(g.f.indexOf(d)>=0)a+=g.n+g.v;});presV.push(T-a);}
-    return {F:F,q:q,m:m,h:best.h,k:k,grupos:grupos,presV:presV,pior:ab.length?Math.min.apply(null,ab.map(function(x){return presV[x];})):0,falha:!!best.falha};
+    return {F:F,q:q,m:m,h:best.h,k:k,desig:desig,grupos:grupos,presV:presV,pior:ab.length?Math.min.apply(null,ab.map(function(x){return presV[x];})):0,falha:!!best.falha};
   });
   var totV=[];for(d=0;d<7;d++)totV.push(fs.reduce(function(s,x){return s+x.presV[d];},0));
   return {dias:dias,ab:ab,fe:fe,fixas:fixas,r:r,ord:ord,fs:fs,H:fs.reduce(function(s,x){return s+x.h;},0),totV:totV};
@@ -676,11 +702,64 @@ function resumoTxt(E){
   l.push('Abre: '+lista(DN.filter(function(n,d){return S.dias[d];}))+' · '+S.hd+' horas por dia');
   l.push('Caminho escolhido: '+x.nome+(S.preco&&E.fat?' com +'+S.preco+'% no preço':''));
   l.push('Jornada nova: '+E.hN+' h por semana'+(B.d12?'':' ('+hmin(E.hN/5)+' por dia)'));
-  B.fs.forEach(function(f){l.push('- '+f.F.n+' ('+f.q+'): '+f.grupos.map(function(g,j){return 'G'+(j+1)+' '+g.n+(g.v?'+'+g.v+' vaga':'')+' '+g.rot;}).join(' | '));});
+  syncEq(B);B.fs.forEach(function(f){var L=S.eq[f.F.n]||[];l.push('- '+f.F.n+' ('+f.q+'): '+f.grupos.map(function(g,j){var nm=L.filter(function(p){return p.g===j;}).map(function(p){return p.v?'vaga':(p.n||'?');});return 'G'+(j+1)+' '+g.rot+': '+nm.join(', ');}).join(' | '));});
   l.push('Pessoas a mais: '+n1(x.pes)+' · Custo: '+rs(x.custo)+'/mês'+(E.fat?' · Vendas perdidas: '+rs(x.rec)+'/mês · Resultado: '+rs(x.res)+'/mês':''));
   return l.join('\n');
 }
 function sl(k,rot,max,passo){return '<div class="sl"><div class="l"><label for="sl-'+k+'">'+rot+'</label><span id="slv-'+k+'">'+S[k]+'%</span></div><input type="range" id="sl-'+k+'" data-sl="'+k+'" min="0" max="'+max+'" step="'+passo+'" value="'+S[k]+'"></div>';}
+/* ---------- equipes com nomes ----------
+   S.eq[função] = [{n:'nome', g:grupo, v:true se é vaga a contratar}]. Acompanha o número de pessoas e de vagas da escala. */
+function syncEq(B){
+  padEq();
+  B.fs.forEach(function(f){
+    var L=S.eq[f.F.n]||[],pes=L.filter(function(p){return !p.v;}),vag=L.filter(function(p){return p.v;}),k=f.grupos.length;
+    var alvo=f.grupos.map(function(g){return g.n;}),alvoV=f.grupos.map(function(g){return g.v;});
+    function cheio(lista,metas){var c=metas.map(function(){return 0;});lista.forEach(function(p){if(p.g<k)c[p.g]++;});for(var j=0;j<k;j++)if(c[j]<metas[j])return j;return k-1;}
+    pes=pes.slice(0,f.q);vag=vag.slice(0,f.h);
+    var sig=k+'|'+f.grupos.map(function(g){return g.rot;}).join('/');if(!S.eqs)S.eqs={};
+    if(S.eqs[f.F.n]!==sig){S.eqs[f.F.n]=sig;var tp=[],tv=[];pes.forEach(function(p){p.g=cheio(tp,alvo);tp.push(p);});vag.forEach(function(p){p.g=cheio(tv,alvoV);tv.push(p);});}
+    pes.forEach(function(p){if(p.g>=k)p.g=k-1;});vag.forEach(function(p){if(p.g>=k)p.g=k-1;});
+    while(pes.length<f.q)pes.push({n:'',g:cheio(pes,alvo)});
+    while(vag.length<f.h)vag.push({n:'',g:cheio(vag,alvoV),v:true});
+    S.eq[f.F.n]=pes.concat(vag);
+  });
+}
+/* quantas pessoas da lista ficam em cada dia aberto */
+function presEq(f,B){
+  var L=S.eq[f.F.n]||[],o=[],d;
+  for(d=0;d<7;d++){if(!B.dias[d]){o.push(null);continue;}
+    if(B.d12){o.push(L.filter(function(p){return p.g===1;}).length);continue;}
+    o.push(L.filter(function(p){var g=f.grupos[p.g];return !g||g.f.indexOf(d)<0;}).length);}
+  return o;
+}
+function tEquipe5(B){
+  syncEq(B);
+  var h='<section id="s-equipe">'+sec('gente','vd','Monte as equipes')+'<p class="sub">Escreva o nome de cada pessoa e use as setas para trocar de grupo. O guia confere, dia a dia, se cada função continua com o mínimo.</p>';
+  B.fs.forEach(function(f,fi){
+    var L=S.eq[f.F.n],pr=presEq(f,B),falta=[],k=f.grupos.length,cont=f.grupos.map(function(){return 0;});
+    L.forEach(function(p){cont[p.g]++;});
+    pr.forEach(function(v,d){if(v!==null&&v<f.m)falta.push(DN[d]+' ('+v+')');});
+    var desigual=k>1&&Math.max.apply(null,cont)-Math.min.apply(null,cont)>1;
+    h+='<div class="eqf'+(falta.length?' al':'')+'" style="--c:var(--g'+(fi%7+1)+')"><div class="eqf-h"><b>'+esc(f.F.n)+'</b><span>'+f.q+(f.q===1?' pessoa':' pessoas')+(f.h?' + '+f.h+(f.h===1?' vaga':' vagas'):'')+' · mínimo '+f.m+' por dia</span></div>';
+    h+='<div class="eqg" style="grid-template-columns:repeat('+Math.min(k,3)+',1fr)">';
+    f.grupos.forEach(function(g,gi){
+      h+='<div class="eqc"><div class="eqc-t"><b>'+(B.d12?'Equipe '+(gi+1):k>1?'Grupo '+(gi+1):'Todos')+'</b><small>'+esc(g.rot)+'</small><span class="eqc-n">'+cont[gi]+'</span></div>';
+      L.forEach(function(p,pi){if(p.g!==gi)return;
+        h+='<div class="eqp'+(p.v?' vg':'')+'">'+(k>1?'<button class="eqm" data-mv="'+fi+'|'+pi+'|-1" aria-label="Mover para o grupo anterior"'+(gi===0?' disabled':'')+'>‹</button>':'')+
+          '<input type="text" data-eqn="'+fi+'|'+pi+'" value="'+esc(p.n)+'" placeholder="'+(p.v?'Vaga a contratar':'Nome')+'" aria-label="'+(p.v?'Vaga':'Nome')+' em '+esc(f.F.n)+'">'+
+          (k>1?'<button class="eqm" data-mv="'+fi+'|'+pi+'|1" aria-label="Mover para o próximo grupo"'+(gi===k-1?' disabled':'')+'>›</button>':'')+'</div>';});
+      h+='</div>';});
+    h+='</div><div class="eqdias">'+pr.map(function(v,d){return v===null?'<span class="fe">'+DN[d]+'<b>–</b></span>':'<span class="'+(v<f.m?'ru':'')+'">'+DN[d]+'<b>'+v+'</b></span>';}).join('')+'</div>';
+    if(falta.length)h+='<span class="pil ru">Abaixo do mínimo: '+lista(falta)+'</span>';
+    else if(desigual)h+='<span class="pil vg">Grupos desiguais: passe uma pessoa para o grupo menor</span>';
+    else h+='<span class="pil ok">Mínimo garantido todos os dias</span>';
+    if(k>1&&!B.d12){
+      if(f.desig&&!(S.semVaga&&S.semVaga[f.F.n]))h+='<label class="eqop"><input type="checkbox" data-equil="'+fi+'"'+(S.semEquil[f.F.n]?'':' checked')+'><span>Contratar '+f.desig+' para deixar os grupos do mesmo tamanho</span></label>';
+      h+='<label class="eqop"><input type="checkbox" data-semvaga="'+fi+'"'+(S.semVaga[f.F.n]?' checked':'')+'><span>Não contratar nesta função (cobrir com a equipe atual)</span></label>';}
+    h+='</div>';});
+  h+='<button class="bt sec" data-imprime="1">Imprimir ou salvar em PDF</button></section>';
+  return h;
+}
 /* quadro da semana: quem está presente em cada dia, por função */
 function painel(E,x,B){
   var fs=B.fs,mxT=Math.max.apply(null,B.totV.concat([1])),un=Math.max(1,Math.ceil(mxT/18)),d,h='';
@@ -696,7 +775,7 @@ function tRes(){
   var E=estrategias(),x=E.sel,B=x.B,h='',mx=Math.max.apply(null,B.totV.concat([1])),d;
   h+=tit(x.id,COR[x.id][0],'Sua estratégia'+(S.nome?' · '+esc(S.nome):''),esc(x.nome)+(x.id===E.melhor.id?' é o caminho de melhor conta':' foi o caminho que você escolheu'));
   h+=painel(E,x,B);
-  h+='<nav class="abas" aria-label="Partes da estratégia"><button data-ir="s-comp">Caminhos</button><button data-ir="s-escala">Escala</button><button data-ir="s-custo">Custo</button><button data-ir="s-conv">Convenção</button><button data-ir="s-lei">Lei</button><button data-ir="s-plano">Plano</button><button data-ir="s-enviar">Enviar</button></nav>';
+  h+='<nav class="abas" aria-label="Partes da estratégia"><button data-ir="s-comp">Caminhos</button><button data-ir="s-escala">Escala</button><button data-ir="s-equipe">Equipes</button><button data-ir="s-custo">Custo</button><button data-ir="s-conv">Convenção</button><button data-ir="s-lei">Lei</button><button data-ir="s-plano">Plano</button><button data-ir="s-enviar">Enviar</button></nav>';
 
   /* caminhos */
   h+='<section id="s-comp">'+sec('rumo','','Compare os caminhos')+'<p class="sub">Toque em um caminho para ver a escala e o plano dele. A conta compara com a situação de hoje.</p>';
@@ -728,6 +807,8 @@ function tRes(){
     if(rr.domAte)h+='<p class="aviso">Sua convenção só permite trabalhar com empregados até as '+rr.domAte+'h no domingo. Planeje o domingo como meio turno.</p>';
     if(rr.domMulher)h+='<p class="aviso">No Rio, uma decisão da Justiça do Trabalho garante às mulheres do comércio folga no domingo a cada 15 dias. Monte o rodízio de domingo levando isso em conta.</p>';}
   h+='</section>';
+
+  h+=tEquipe5(B);
 
   /* custo */
   var horas=x.pes*E.hN,cHE=horas*4.33*(E.sal/(E.hN*5))*1.5,mxC=Math.max(cHE,x.custo,1);
@@ -874,6 +955,8 @@ document.addEventListener('click',function(e){
   if(d.nav){var p=+d.nav;if(p>0){erro=valida();if(erro){desenha();return;}}erro='';S.tela=Math.max(0,Math.min(5,S.tela+p));guarda();desenha(true);return;}
   if(d.vai){S.tela=+d.vai;guarda();desenha(true);return;}
   if(d.novo){if(!d.ok){b.dataset.ok='1';b.textContent='Confirmar: apagar tudo';return;}var an=S.anon;S=padrao();S.anon=an;guarda();desenha(true);return;}
+  if(d.mv){var a=d.mv.split('|'),fsB=estrategias().sel.B.fs,fF=fsB[+a[0]];if(!fF)return;var pp=S.eq[fF.F.n][+a[1]];if(!pp)return;pp.g=Math.max(0,Math.min(fF.grupos.length-1,pp.g+(+a[2])));guarda();var y1=window.scrollY;desenha();window.scrollTo(0,y1);return;}
+  if(d.imprime){document.body.classList.add('imp-eq');try{window.print();}catch(e2){}setTimeout(function(){document.body.classList.remove('imp-eq');},500);return;}
   if(d.ir){var s=document.getElementById(d.ir);if(s)s.scrollIntoView({behavior:'smooth',block:'start'});return;}
   if(d.copiar){var tx=$('#tx-resumo'),m=$('#msg-copia'),cai=function(){tx.style.display='';tx.select();m.textContent='Selecione o texto abaixo e copie.';};
     if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(tx.value).then(function(){m.textContent='Resumo copiado.';},cai);else cai();return;}
@@ -896,6 +979,8 @@ document.addEventListener('input',function(e){
   else if(d.fn){if(S.fn[+d.fn])S.fn[+d.fn].n=i.value;}
   else if(d.numc)S[d.numc]=parseFloat(String(i.value).replace(',','.'))||0;
   else if(d.feito!==undefined)S.feito[d.feito]=i.checked;
+  else if(d.eqn){var a2=d.eqn.split('|'),fF2=estrategias().sel.B.fs[+a2[0]];if(fF2&&S.eq[fF2.F.n]&&S.eq[fF2.F.n][+a2[1]])S.eq[fF2.F.n][+a2[1]].n=i.value;}
+  else if(d.equil!==undefined||d.semvaga!==undefined){var fF3=estrategias().sel.B.fs[+(d.equil!==undefined?d.equil:d.semvaga)];if(!fF3)return;padEq();if(d.equil!==undefined)S.semEquil[fF3.F.n]=!i.checked;else S.semVaga[fF3.F.n]=i.checked;guarda();var y2=window.scrollY;desenha();window.scrollTo(0,y2);return;}
   else if(d.anon){S.anon=i.checked;if(S.anon){S.env='';agendaPesquisa();}}
   else if(d.sl){S[d.sl]=+i.value;$('#slv-'+d.sl).textContent=i.value+'%';var E=estrategias();$('#o-ests').innerHTML=cartoesEst(E);$('#o-tiles').innerHTML=tilesRes(E);}
   else return;
