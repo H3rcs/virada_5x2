@@ -343,6 +343,58 @@ section{scroll-margin-top:calc(var(--topoh,56px) + 62px)}
 }
 @media (min-width:1000px) and (max-width:1199px){.tela:not(.t0){grid-template-columns:280px minmax(0,1fr);gap:40px}.t5{grid-template-columns:320px minmax(0,1fr)}}
 @media (min-width:1200px){.fnl,.fns{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}.fnl>*,.fns>*{min-width:0}}
+/* ---------- quadro da semana (resultado) ---------- */
+.painel{flex:none;--g1:#78A6F5;--g2:#3FCB98;--g3:#C39BE8;--g4:#F2A65A;--g5:#56C7DE;--g6:#F08BB4;--g7:#A5D36A;background:linear-gradient(160deg,#0E2140 0,#10243E 55%,#1A2C4F 100%);color:#EEF2FA;border-radius:22px;padding:16px 14px 14px;display:flex;flex-direction:column;gap:14px;box-shadow:0 22px 40px -24px rgba(16,36,62,.9);position:relative;overflow:hidden}
+.painel::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1.2px);background-size:14px 14px;pointer-events:none}
+.pn-cab{display:flex;justify-content:space-between;align-items:baseline;gap:10px;position:relative;z-index:1}
+.pn-cab b{font-family:var(--display);font-size:19px;font-weight:800;letter-spacing:-.01em}
+.pn-cab span{font-size:13px;color:#AFC0DC}
+.pn-dias{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;position:relative;z-index:1}
+.pn-d{display:flex;flex-direction:column;align-items:center;gap:6px;background:rgba(255,255,255,.06);border-radius:12px;padding:8px 3px 7px;min-width:0}
+.pn-d.fo{background:rgba(232,89,12,.22);box-shadow:inset 0 0 0 1.5px rgba(255,140,70,.55)}
+.pn-d.fe{background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 6px,transparent 6px 11px)}
+.pn-n{font-family:var(--display);font-weight:800;font-size:22px;line-height:1;font-stretch:85%;min-height:22px}
+.pn-p{display:flex;flex-wrap:wrap-reverse;justify-content:center;align-content:flex-start;gap:3px;min-height:86px;width:100%;padding:0 2px}
+.pn-p i{width:9px;height:9px;border-radius:50%;display:block}
+#app.entra .pn-p i{animation:ponto .45s cubic-bezier(.2,.9,.3,1.3) both}
+.pn-p em{font-style:normal;font-size:10.5px;color:#8FA3C4;writing-mode:vertical-rl;transform:rotate(180deg);margin:auto}
+.pn-l{font-size:12px;font-weight:700;color:#C9D5EA}
+.pn-leg{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12.5px;color:#C9D5EA;position:relative;z-index:1}
+.pn-leg span{display:inline-flex;align-items:center;gap:5px}.pn-leg i{width:9px;height:9px;border-radius:50%;display:block}
+.pn-un{color:#8FA3C4}
+.painel .tiles{position:relative;z-index:1}
+.painel .tile{background:rgba(255,255,255,.07);border:0;box-shadow:none;color:#EEF2FA}
+.painel .tile .rot,.painel .tile .d{color:#AFC0DC}
+.painel .tile .v{color:#FFFFFF}.painel .tile.o .v{color:#FF8A45}.painel .tile.v2 .v{color:#5FE0AE}.painel .tile.r .v{color:#FF8577}
+@keyframes ponto{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+/* ---------- convenção ---------- */
+.cv-t{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.selo-c{font-family:var(--display);font-weight:800;font-size:13px;line-height:1.1;text-align:center;max-width:160px;padding:6px 10px;border:2.5px solid currentColor;border-radius:8px;transform:rotate(-3deg);color:var(--verde)}
+.cv-cct .selo-c,.cv-negocia .selo-c{color:#A56A10}
+:root[data-theme="dark"] .cv-cct .selo-c,:root[data-theme="dark"] .cv-negocia .selo-c{color:var(--amarelo)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cv-cct .selo-c,:root:not([data-theme="light"]) .cv-negocia .selo-c{color:var(--amarelo)}}
+.cv-sem .selo-c{color:var(--alerta)}
+.conv.cv-acordo{border-top:5px solid var(--verde)}.conv.cv-cct,.conv.cv-negocia{border-top:5px solid var(--amarelo)}.conv.cv-sem{border-top:5px solid var(--alerta)}
+.cv-s{font-family:var(--display);font-size:18px;line-height:1.2}
+.cv-curto{animation:cvIn .35s ease-out both}
+@keyframes cvIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.cv-l{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.cv-l li{position:relative;padding-left:27px;font-size:15px}
+.cv-l li::before{content:'✓';position:absolute;left:0;top:1px;width:18px;height:18px;border-radius:5px;background:var(--azul);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;line-height:1}
+.cv-f{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.cv-f a{font-size:13px;font-weight:700;color:var(--azul);text-decoration:none;border:1px solid var(--linha);border-radius:99px;padding:5px 11px;background:var(--campo)}
+.al-conv{border:2px solid var(--alerta)}
+/* ---------- linha do tempo da lei ---------- */
+.linha-t{list-style:none;margin:0;padding:0 0 0 8px;display:flex;flex-direction:column}
+.linha-t li{position:relative;padding:0 0 16px 22px;border-left:3px solid var(--linha);display:flex;flex-direction:column;gap:1px}
+.linha-t li:last-child{border-left-color:transparent;padding-bottom:4px}
+.linha-t li::before{content:'';position:absolute;left:-9px;top:1px;width:15px;height:15px;border-radius:50%;background:var(--papel);border:3px solid var(--laranja)}
+.linha-t li.ja::before{background:var(--laranja)}
+.linha-t li.ja{border-left-color:var(--laranja)}
+.lt-d{font-family:var(--display);font-weight:800;font-size:14px;color:var(--laranja)}
+.linha-t b{font-size:16px}.linha-t li>span:last-child{font-size:14px;color:var(--suave)}
+.abas button.on{background:var(--forte);color:var(--forte-txt);border-color:var(--forte)}
+@media (prefers-reduced-motion:reduce){#app.entra .pn-p i,.cv-curto{animation:none}}
 </style>
 <script src="../assets/config.js"></script>
 </head>
@@ -370,7 +422,85 @@ var SET={
   servicos:['Serviços',[['Atendente',5,2],['Técnico',4,2],['Administrativo',2,1]],[2,2,2,2,2,2,2],9],
   saude:['Saúde, vigilância ou limpeza',[['Recepcionista',3,1],['Técnico',6,3],['Limpeza',2,1]],[2,2,2,2,2,2,2],24]
 };
-function padrao(){return {v:1,tela:0,nome:'',setor:'',dias:[1,1,1,1,1,1,0],mov:[2,2,2,2,2,3,2],hd:9,fn:[],esc:'6x1',h0:44,acordo:'nsei',sal:2429.41,contratar:'talvez',publico:false,fat:0,mg:30,mig:50,preco:0,perda:0,estr:'',feito:{},rid:'',anon:true,env:''};}
+/* ---------- convenções coletivas por cidade ----------
+   st: acordo = já trata da 5x2 · cct = convenção vigente, sem cláusula de 5x2 publicada · negocia = em negociação · sem = não encontramos.
+   r.dia: limite de horas por dia previsto · r.comp: folgas podem ser compensadas no mês · r.d12: prevê 12x36 · r.banco: banco de horas
+   r.domMax: parte máxima da equipe que pode trabalhar no domingo · r.domAte: domingo só até esta hora · r.fer: datas com o comércio fechado
+   Atualize CONV_DATA a cada revisão. Fontes no campo f. */
+var CONV_DATA='21/11/2026';
+var CID=[['feira','Feira de Santana (BA)'],['salvador','Salvador (BA)'],['sp','São Paulo (SP)'],['rio','Rio de Janeiro (RJ)'],['bh','Belo Horizonte (MG)'],['poa','Porto Alegre (RS)'],['df','Brasília (DF)'],['recife','Recife (PE)'],['fortaleza','Fortaleza (CE)'],['goiania','Goiânia (GO)'],['belem','Belém (PA)'],['curitiba','Curitiba (PR)'],['manaus','Manaus (AM)'],['outra','Outra cidade']];
+var GRUPO={comercio:'comercio',supermercado:'supermercado',atacado:'atacado',restaurante:'hotelaria',hotel:'hotelaria',industria:'outro',servicos:'outro',saude:'outro'};
+var CONV={
+  feira:{comercio:{st:'acordo',sind:'Secofs (empregados) e Sicomércio (lojistas)',vig:'01/11/2026 a 31/10/2027',
+    res:'A convenção 2026/2027 já adota a primeira etapa da Emenda 141: 42 horas e duas folgas por semana, com limite de 8 horas por dia.',
+    cl:['Jornada de 42 horas e dois descansos remunerados por semana, um deles de preferência no domingo.','Limite de 8 horas por dia. Na prática, cinco dias de 8 horas somam 40 horas: o guia faz a conta com esse teto.','Feriado trabalhado: R$ 95 (até 20 empregados) ou R$ 100 (mais de 20), além do vale-transporte.','Lojas fechadas para comerciários em 09/02/2027 (Dia do Comerciário) e, no Centro, em 02/01/2027.','Banco de horas não compensado até a demissão é pago em dobro.','Piso de vendedor, balconista, caixa e conferente: R$ 1.892. Entregador, embalador e ajudante: R$ 1.808.'],
+    r:{dia:8,banco:true,fer:['02/01/2027 (Centro)','09/02/2027 (Dia do Comerciário)']},piso:1892,
+    f:[['Bahia Notícias, 16/11/2026','https://www.bahianoticias.com.br/municipios/noticia/53389-comerciarios-de-feira-terao-reajuste-de-ate-75-e-dois-dias-de-folga-por-semana']]}},
+  salvador:{comercio:{st:'cct',sind:'Sindicato dos Comerciários de Salvador e Sindilojas',vig:'2026/2027, assinada em 24/04/2026',
+    res:'Há convenção vigente, mas não encontramos cláusula publicada sobre a 5x2. O sindicato dos empregados pede 5x2 com as duas folgas em dias seguidos.',
+    cl:['Piso de R$ 1.820.','Feriado trabalhado com adicional de 100% e folga.','Domingo de Carnaval trabalhado: R$ 120. Segunda e terça de Carnaval com o comércio fechado.','O sindicato publicou um termo aditivo de 2026: confira se ele trata da nova jornada.'],
+    r:{fer:['Segunda e terça de Carnaval']},piso:1820,
+    f:[['Sindicato dos Comerciários de Salvador, 27/04/2026','https://comerciariossalvador.com.br/2026/04/27/atencao-categoria-convencao-assinada-veja-as-nossas-conquistas/'],['A Tarde: pauta pela 5x2','https://atarde.com.br/politica/comerciarios-de-salvador-apresentam-proposta-pelo-fim-da-escala-6x1-1378738']]}},
+  sp:{comercio:{st:'acordo',sind:'Sindicato dos Comerciários de São Paulo e entidades patronais',vig:'a partir de 16/12/2026',
+    res:'Acordo fechado: 42 horas em cinco dias, com escalas flexíveis e banco de horas. A 6x1 tradicional fica proibida.',
+    cl:['Jornada de 42 horas por semana, distribuída em cinco dias, a partir de 16/12/2026.','Permite 5x2 e 4x3 e banco de horas para compensar.','A partir de janeiro de 2027, uma semana do mês pode ser 6x1, desde que a pessoa tenha 8 folgas no mês.','Vale para supermercados, atacado, açougues, calçados, automóveis e outros segmentos que assinaram.'],
+    r:{comp:true,banco:true,esc:'5x2 e 4x3'},
+    f:[['Diário do Grande ABC, 11/11/2026','https://www.dgabc.com.br/Noticia/4368241/comerciarios-de-sp-e-rs-fecham-acordo-para-reduzir-a-escala-6x1-para-5x2'],['Forbes Brasil, nov/2026','https://forbes.com.br/forbes-money/2026/11/comercio-sp-porto-alegre-escala-5x2-fim-6x1/']]}},
+  poa:{comercio:{st:'acordo',sind:'Sindec-POA e 22 sindicatos patronais',vig:'a partir de 01/12/2026',
+    res:'Acordo fechado para todo o comércio da capital: banco de folgas em dezembro, 42 horas em cinco dias e 40 horas em dezembro de 2027.',
+    cl:['De 01/12/2026: banco de descanso remunerado. Nas semanas de pico de dezembro, uma folga fica na semana e a outra em outro dia do mês.','Cada pessoa precisa ter 8 folgas no mês.','De 16/12/2026: 42 horas por semana em cinco dias. Em dezembro de 2027: 40 horas, sem corte de salário.','A partir de janeiro de 2027, uma semana pode ser 6x1 se as 8 folgas do mês forem garantidas. Pode alternar semanas 5x2 e 4x3.'],
+    r:{comp:true,banco:true,esc:'5x2 e 4x3'},
+    f:[['Diário do Grande ABC, 11/11/2026','https://www.dgabc.com.br/Noticia/4368241/comerciarios-de-sp-e-rs-fecham-acordo-para-reduzir-a-escala-6x1-para-5x2']]}},
+  rio:{comercio:{st:'cct',sind:'SEC-RJ e SindilojasRio',vig:'2026/2027',
+    res:'Convenção vigente, sem acordo de 5x2 publicado até agora. Há uma decisão judicial que mexe nos domingos das mulheres.',
+    cl:['Proibido convocar empregados em 25/12, 01/01, terça de Carnaval e no Dia do Comerciário.','Justiça do Trabalho (3ª Vara do Rio, nov/2026): mulheres do comércio têm direito a folga no domingo a cada 15 dias. Decisão de primeira instância.'],
+    r:{domMulher:true,fer:['25/12','01/01','Terça de Carnaval','Dia do Comerciário']},
+    f:[['Tribuna do Sertão, 24/09/2026','https://tribunadosertao.com.br/financas/2026/09/24/984974-comerciarios-de-shoppings-e-lojas-de-rua-do-rio-terao-reajuste-de-66'],['Diário do Rio, 12/11/2026','https://diariodorio.com/economia/mercado-de-trabalho/2026/11/12/justica-determina-folga-a-cada-15-dias-para-mulheres-do-comercio-no-rio-e-condena-sindilojas-a-pagar-rs-50-mil.html']]}},
+  bh:{comercio:{st:'negocia',sind:'Fecomércio MG, Sindilojas BH e sindicato dos comerciários',vig:'em negociação',
+    res:'Sem acordo de 5x2 publicado. A Fecomércio MG levou propostas para o Natal e a CDL/BH quer começar só em janeiro de 2027.',
+    cl:['A Fecomércio MG entregou propostas em 27/10/2026, ainda sem resposta pública.','Enquanto não houver acordo, valem a lei e a decisão do STF: 42 horas em cinco dias de até 8h24.'],
+    r:{},f:[['Diário do Comércio, 28/10/2026','https://diariodocomercio.com.br/economia/fecomercio-escala-5x2-natal/']]}},
+  df:{comercio:{st:'cct',sind:'Sindicom-DF e Sindivarejista-DF',vig:'até 30/04/2027',
+    res:'Convenção vigente, sem cláusula de 5x2 publicada. Ela proíbe escalar a mesma pessoa em dois domingos seguidos.',
+    cl:['Ninguém trabalha dois domingos seguidos: quem trabalha um domingo folga no seguinte.','Feriados fora da lista só com acordo específico, com pagamento em dobro ou folga.'],
+    r:{domMax:.5},f:[['Portal de Prefeitura, 2026','https://portaldeprefeitura.com.br/trends/?p=1659']]}},
+  recife:{comercio:{st:'negocia',sind:'Sindilojas Recife e sindicato dos comerciários',vig:'em negociação',
+    res:'Sem acordo de 5x2 publicado. Os lojistas pedem mais prazo, e o Centro vai abrir todos os dias até o fim de dezembro por acordo entre os sindicatos.',
+    cl:['Lojas do Centro abertas todos os dias, inclusive domingos e feriados, de 20/11 ao fim de dezembro de 2026.','Enquanto não houver acordo de jornada, valem a lei e a decisão do STF: 42 horas em cinco dias de até 8h24.'],
+    r:{},f:[['Diario de Pernambuco, 19/11/2026','https://www.diariodepernambuco.com.br/economia/2026/11/11729510-comercio-do-centro-do-recife-vai-abrir-todos-os-dias-ate-o-fim-do-ano.html'],['Portal de Prefeitura, 07/11/2026','https://portaldeprefeitura.com.br/pernambuco/comercio-do-recife-discute-fim-da-escala-6x1-e-defende-prazo-maior/635599/']]}},
+  fortaleza:{comercio:{st:'cct',sind:'Sindilojas Fortaleza e Sindicato dos Comerciários',vig:'até o fim de 2026',
+    res:'A convenção vence no fim de 2026 e já prevê banco de horas e 12x36. A próxima precisa tratar da 5x2.',
+    cl:['Prevê banco de horas e a escala 12x36.','Comércio fechado em 01/01, 01/05, 21/09 (Dia do Comerciário) e 25/12.','Vence no fim de 2026: acompanhe a renegociação.'],
+    r:{d12:true,banco:true,fer:['01/01','01/05','21/09','25/12']},
+    f:[['O Povo, 22/10/2026','https://mais.opovo.com.br/jornal/economia/2026/10/22/fim-da-6x1-sindicato-dos-lojistas-diz-que-leis-se-cumprem-e-pede-cautela.html'],['O Povo, 23/02/2026','https://www.opovo.com.br/noticias/economia/2026/02/23/amp/feriado-em-fortaleza-comercio-tem-abono-folga-e-dias-proibidos.html']]}},
+  goiania:{comercio:{st:'cct',sind:'Sindilojas-GO e Seceg',vig:'assinada em 2026',
+    res:'Convenção vigente, sem cláusula de 5x2 publicada.',
+    cl:['Piso de R$ 1.402,46 para comerciários e R$ 1.645 para vendedores em Goiânia e Aparecida.'],
+    r:{},f:[['Mais Goiás, 2026','https://www.maisgoias.com.br/cidades/apos-3-anos-convencao-coletiva-define-funcionamento-do-comercio-salario-e-outras-regras-em-goias/']]},
+    supermercado:{st:'cct',sind:'Secom-GO e Sincovaga-GO',vig:'2026, sem data final informada',
+    res:'Supermercados só funcionam com empregados até as 11h nos domingos e feriados.',
+    cl:['Domingos e feriados: funcionamento só até as 11h.','Fechados em 01/05, 04/10 e 25/12.','Multa de R$ 500 por empregado, por dia, fora do horário permitido.','Banco de horas só com acordo coletivo com o Secom-GO.'],
+    r:{domAte:11,fer:['01/05','04/10','25/12']},
+    f:[['O Hoje, 04/06/2026','https://ohoje.com/2026/06/04/vai-ao-supermercado-no-domingo-nova-regra-muda-horario-de-funcionamento-em-goias/']]}},
+  belem:{comercio:{st:'negocia',sind:'Fetracom, Sindilojas Belém e Aspas (supermercados)',vig:'em negociação',
+    res:'Trabalhadores e empresários se organizam para aplicar a 5x2 em dezembro, mas ainda sem acordo assinado.',
+    cl:['O Sindilojas Belém e a Associação Paraense de Supermercados disseram que vão cumprir a 5x2.','A Fetracom prepara propostas com os sindicatos filiados.'],
+    r:{},f:[['O Liberal, 18/11/2026','https://www.oliberal.com/economia/comercio-e-servicos-no-para-se-articulam-para-implementar-escala-5x2-em-dezembro-1.1195145']]}}
+};
+/* supermercado e atacado usam a convenção do comércio quando não há uma própria */
+function conv(){
+  var c=CONV[S.cid],g=GRUPO[S.setor]||'outro',e=null,herda=false;
+  if(!S.cid||!S.setor)return null;
+  if(c&&c[g])e=c[g];else if(c&&(g==='supermercado'||g==='atacado')&&c.comercio){e=c.comercio;herda=true;}
+  if(!e){var nm=S.cid==='outra'?'sua cidade':(CID.filter(function(x){return x[0]===S.cid;})[0]||['',''])[1];
+    e={st:'sem',sind:'',vig:'',res:g==='hotelaria'?'Não encontramos acordo público de 5x2 para hotéis, bares e restaurantes em '+nm+'. A convenção do setor continua valendo, mas cláusulas de 44 horas ou de uma folga só deixam de valer em 16/12/2026.':g==='outro'?'Seu setor tem convenção própria (indústria, vigilância, limpeza, saúde, serviços), que ainda não está no guia.':'Não encontramos acordo público de 5x2 para '+nm+'.',cl:['Procure o sindicato da categoria e o contador para saber o que foi negociado.','Sem acordo, valem a lei e a decisão do STF: 42 horas em cinco dias de até 8h24.'],r:{},f:[]};}
+  return {e:e,herda:herda};
+}
+function stConv(st){return {acordo:['ok','Já trata da 5x2'],cct:['vg','Convenção vigente, sem regra de 5x2'],negocia:['vg','Em negociação'],sem:['ru','Sem acordo encontrado']}[st];}
+/* horas que cada pessoa trabalha por semana na escala de cinco dias */
+function diaMax(){var c=conv();if(c&&c.e.r.dia)return c.e.r.dia;return 8.4;}
+function hCap(){return Math.min(hNovo(),Math.round(diaMax()*5*10)/10);}
+function padrao(){return {v:1,tela:0,nome:'',setor:'',dias:[1,1,1,1,1,1,0],mov:[2,2,2,2,2,3,2],hd:9,fn:[],esc:'6x1',h0:44,acordo:'nsei',acMan:false,cid:'',sal:2429.41,contratar:'talvez',publico:false,fat:0,mg:30,mig:50,preco:0,perda:0,estr:'',feito:{},rid:'',anon:true,env:''};}
 var S=padrao(),erro='';
 function $(s){return document.querySelector(s);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
@@ -384,7 +514,7 @@ function hmin(h){var m=Math.round(h*60);return Math.floor(m/60)+'h'+(m%60?('0'+m
 function pw(n,g,vg){var s='';for(var i=0;i<n;i++)s+='<svg class="pw'+(vg?' vg':'')+'"'+(vg?'':' style="fill:var(--g'+g+')"')+'><use href="#p"/></svg>';return s;}
 function lista(a){return a.length<2?a.join(''):a.slice(0,-1).join(', ')+' e '+a[a.length-1];}
 function em(d){return (d>=5?'no ':'na ')+DL[d];}
-function hNovo(){return S.acordo==='sim'?42:40;}
+function hNovo(){return Date.now()<new Date(2027,11,16).getTime()?42:40;}
 function fnOk(){return S.fn.filter(function(f){return f.q>0&&f.n.trim();});}
 
 var IC={rod:'<path d="M4 12a8 8 0 0 1 13.7-5.7L20 8M20 4v4h-4M20 12a8 8 0 0 1-13.7 5.7L4 16M4 20v-4h4"/>',
@@ -439,7 +569,7 @@ function doze(){
   return {dias:S.dias,ab:[],fe:[],fixas:[],r:9,ord:[],fs:fs,H:fs.reduce(function(s,x){return s+x.h;},0),totV:totV,d12:true};
 }
 function estrategias(){
-  var hN=hNovo(),N=fnOk().reduce(function(s,f){return s+f.q;},0),sal=S.sal||0,D=S.dias.filter(Boolean).length,Hh=Math.max(1,S.hd||9);
+  var hN=hCap(),N=fnOk().reduce(function(s,f){return s+f.q;},0),sal=S.sal||0,D=S.dias.filter(Boolean).length,Hh=Math.max(1,S.hd||9);
   var fat=S.fat||0,mg=(S.mg||0)/100,mig=(S.mig||0)/100,p=(S.preco||0)/100,l=(S.perda||0)/100,dem0=N*(S.h0||44);
   var ganho=fat?fat*((1-l)*(p+mg)-mg):0,sp=0;S.dias.forEach(function(a,d){if(a)sp+=PESO[S.mov[d]];});
   function mk(id,nome,desc,B,dem,rec){
@@ -453,8 +583,8 @@ function estrategias(){
   if(Hh>=6){o=mk('hora','Abrir 1 hora a menos por dia','Corta a hora de menor movimento, na abertura ou no fechamento, e mantém os dias.',A,dem0*(Hh-1)/Hh,fat/Hh*.5*(1-mig));L.push(o);}
   o=mk('doze','Escala 12x36','Duas equipes se alternam: cada pessoa trabalha 12 horas e folga 36.',doze(),0,0);
   if(D<7||Hh<11){o.fora=true;o.av.push('Só encaixa em quem abre todos os dias, por 11 horas ou mais. Não é o seu caso hoje.');}
-  o.av.push('Depende de convenção ou acordo coletivo. Confirme com o sindicato e um advogado.');
-  o.av.push('A média de 42 horas por semana passa do teto de 40 horas em 16/12/2027.');L.push(o);
+  var cv=conv();o.av.push(cv&&cv.e.r.d12?'Sua convenção já prevê a 12x36. Confira as condições com o sindicato.':'Depende de convenção ou acordo coletivo. Confirme com o sindicato e um advogado.');
+  o.av.push('Se a média do mês passar do teto (42 horas agora, 40 em 16/12/2027), a diferença vira folga ou hora extra.');L.push(o);
   L.sort(function(a,b){return (a.fora?1:0)-(b.fora?1:0)||(b.res-a.res)||(a.pes-b.pes);});
   var sel=L.filter(function(x){return x.id===S.estr;})[0]||L[0];
   return {L:L,sel:sel,melhor:L[0],N:N,hN:hN,sal:sal,fat:fat,ganho:ganho,D:D};
@@ -482,7 +612,20 @@ function tEmpresa(){
   return tit('loja','','Passo 1 · Empresa','Qual é o seu negócio?')+
   '<div class="cartao"><label class="rot" for="i-nome">Nome da empresa (opcional)</label><input type="text" id="i-nome" data-txt="nome" value="'+esc(S.nome)+'" autocomplete="organization"></div>'+
   '<div class="cartao"><span class="rot">Setor</span><div class="chips">'+Object.keys(SET).map(function(k){return '<button class="chip" data-setor="'+k+'" aria-pressed="'+(S.setor===k)+'">'+SET[k][0]+'</button>';}).join('')+'</div></div>'+
+  '<div class="cartao"><label class="rot" for="i-cid">Cidade</label><select id="i-cid" data-sel="cid"><option value="">Escolha a cidade</option>'+CID.map(function(c){return '<option value="'+c[0]+'"'+(S.cid===c[0]?' selected':'')+'>'+c[1]+'</option>';}).join('')+'</select><p class="sub">Com a cidade e o setor, o guia aplica a convenção coletiva que vale para você.</p></div>'+
+  cConv(true)+
   '<div class="cartao"><span class="rot">Como é a escala hoje?</span>'+chips('esc',[['6x1','6x1 (uma folga)'],['5x2','Já é 5x2'],['12x36','12x36'],['mista','Varia por função']])+'</div>';
+}
+/* cartão da convenção: curto no passo 1, completo no resultado */
+function cConv(curto){
+  var c=conv();if(!c)return '';var e=c.e,t=stConv(e.st),h='<div class="cartao conv cv-'+e.st+(curto?' cv-curto':'')+'"><div class="cv-t"><span class="rot">Sua convenção</span><span class="selo-c">'+t[1]+'</span></div>';
+  if(e.sind)h+='<b class="cv-s">'+esc(e.sind)+'</b>'+(e.vig?'<span class="sub">Vigência: '+esc(e.vig)+'</span>':'');
+  h+='<p>'+esc(e.res)+'</p>';
+  if(c.herda)h+='<p class="aviso">Supermercados e atacados às vezes têm convenção própria. Confira com o contador em qual sua empresa se enquadra.</p>';
+  if(curto)return h+'</div>';
+  h+='<ul class="cv-l">'+e.cl.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';
+  if(e.f.length)h+='<div class="cv-f"><span class="sub">Fontes</span>'+e.f.map(function(f){return '<a href="'+esc(f[1])+'" target="_blank" rel="noopener">'+esc(f[0])+'</a>';}).join('')+'</div>';
+  return h+'<p class="sub">Levantamento de '+CONV_DATA+'. Convenções mudam: confirme com o sindicato antes de fechar a escala.</p></div>';
 }
 function tFunc(){
   var h=tit('cal','az','Passo 2 · Funcionamento','Quando a empresa abre e como é o movimento?')+
@@ -504,8 +647,8 @@ function tEquipe(){
 function tRegras(){
   return tit('cifra','rx','Passo 4 · Jornada e dinheiro','Últimos dados para fechar a conta')+
   '<div class="cartao"><span class="rot">Jornada semanal hoje</span>'+chips('h0',[[44,'44 horas'],[42,'42 horas'],[40,'40 horas ou menos']])+'</div>'+
-  '<div class="cartao"><span class="rot">Tem convenção ou acordo coletivo que trate da jornada?</span>'+chips('acordo',[['sim','Sim'],['nao','Não'],['nsei','Não sei']])+'<p class="sub">Muda bastante a conta: sem acordo, o limite seguro é de 8 horas por dia e 40 por semana.</p></div>'+
-  '<div class="cartao"><label class="rot" for="i-sal">Salário médio da equipe (R$)</label><input type="number" id="i-sal" data-numc="sal" inputmode="decimal" min="0" step="50" value="'+esc(S.sal)+'"><p class="sub">Já vem com o salário médio de admissão do Caged de setembro de 2026.</p></div>'+
+  '<div class="cartao"><span class="rot">Tem convenção ou acordo coletivo que trate da nova jornada?</span>'+chips('acordo',[['sim','Sim'],['nao','Não'],['nsei','Não sei']])+'<p class="sub">'+(conv()&&conv().e.st==='acordo'&&!S.acMan?'Marcamos Sim porque a convenção da sua cidade já trata da 5x2. ':'')+'Sem acordo, vale a decisão do STF: 42 horas em cinco dias de até 8h24. Com acordo, dá para compensar folgas ao longo do mês, usar banco de horas e 12x36.</p></div>'+
+  '<div class="cartao"><label class="rot" for="i-sal">Salário médio da equipe (R$)</label><input type="number" id="i-sal" data-numc="sal" inputmode="decimal" min="0" step="50" value="'+esc(S.sal)+'"><p class="sub">Já vem com o salário médio de admissão do Caged de setembro de 2026.'+(conv()&&conv().e.piso?' O piso da sua convenção é '+rs(conv().e.piso)+'.':'')+'</p></div>'+
   '<div class="cartao"><label class="rot" for="i-fat">Faturamento por mês (R$, opcional)</label><input type="number" id="i-fat" data-numc="fat" inputmode="decimal" min="0" step="1000" value="'+(S.fat?esc(S.fat):'')+'" placeholder="Ex.: 120000"><p class="sub">Com ele o guia calcula quanto custa fechar um dia e quanto rende um aumento de preço.</p></div>'+
   '<div class="cartao"><span class="rot">De cada R$ 100 vendidos, quanto sobra depois de pagar a mercadoria ou o material?</span>'+chips('mg',[[20,'R$ 20'],[30,'R$ 30'],[40,'R$ 40'],[50,'R$ 50'],[70,'R$ 70']])+'</div>'+
   '<div class="cartao"><span class="rot">Presta serviço terceirizado para órgão público?</span>'+chips('publico',[[true,'Sim'],[false,'Não']])+'</div>';
@@ -529,6 +672,7 @@ function resumoTxt(E){
   var x=E.sel,B=x.B,l=['*Virada 5x2 · plano de transição*'];
   if(S.nome)l.push('Empresa: '+S.nome);
   l.push('Setor: '+(SET[S.setor]?SET[S.setor][0]:'-')+' · Equipe: '+E.N+' pessoas');
+  var cR=conv();if(cR&&S.cid!=='outra')l.push('Cidade: '+(CID.filter(function(c){return c[0]===S.cid;})[0]||['',''])[1]+' · Convenção: '+stConv(cR.e.st)[1].toLowerCase());
   l.push('Abre: '+lista(DN.filter(function(n,d){return S.dias[d];}))+' · '+S.hd+' horas por dia');
   l.push('Caminho escolhido: '+x.nome+(S.preco&&E.fat?' com +'+S.preco+'% no preço':''));
   l.push('Jornada nova: '+E.hN+' h por semana'+(B.d12?'':' ('+hmin(E.hN/5)+' por dia)'));
@@ -537,11 +681,22 @@ function resumoTxt(E){
   return l.join('\n');
 }
 function sl(k,rot,max,passo){return '<div class="sl"><div class="l"><label for="sl-'+k+'">'+rot+'</label><span id="slv-'+k+'">'+S[k]+'%</span></div><input type="range" id="sl-'+k+'" data-sl="'+k+'" min="0" max="'+max+'" step="'+passo+'" value="'+S[k]+'"></div>';}
+/* quadro da semana: quem está presente em cada dia, por função */
+function painel(E,x,B){
+  var fs=B.fs,mxT=Math.max.apply(null,B.totV.concat([1])),un=Math.max(1,Math.ceil(mxT/18)),d,h='';
+  var cid=(CID.filter(function(c){return c[0]===S.cid;})[0]||['',''])[1];
+  h+='<div class="painel"><div class="pn-cab"><b>Quadro da semana</b><span>'+(cid&&S.cid!=='outra'?esc(cid):'')+'</span></div><div class="pn-dias">';
+  for(d=0;d<7;d++){var ab=!!B.dias[d],pts='';
+    if(ab)fs.forEach(function(f,i){var k=Math.round(f.presV[d]/un);for(var j=0;j<k;j++)pts+='<i style="background:var(--g'+(i%7+1)+')"></i>';});
+    h+='<div class="pn-d'+(ab?'':' fe')+(ab&&S.mov[d]===3?' fo':'')+'"><span class="pn-n">'+(ab?B.totV[d]:'')+'</span><div class="pn-p">'+(ab?pts:'<em>fechado</em>')+'</div><span class="pn-l">'+DN[d]+'</span></div>';}
+  h+='</div><div class="pn-leg">'+fs.map(function(f,i){return '<span><i style="background:var(--g'+(i%7+1)+')"></i>'+esc(f.F.n)+'</span>';}).join('')+(un>1?'<span class="pn-un">cada ponto = '+un+' pessoas</span>':'')+'</div>';
+  return h+'<div class="tiles" id="o-tiles">'+tilesRes(E)+'</div></div>';
+}
 function tRes(){
   var E=estrategias(),x=E.sel,B=x.B,h='',mx=Math.max.apply(null,B.totV.concat([1])),d;
   h+=tit(x.id,COR[x.id][0],'Sua estratégia'+(S.nome?' · '+esc(S.nome):''),esc(x.nome)+(x.id===E.melhor.id?' é o caminho de melhor conta':' foi o caminho que você escolheu'));
-  h+='<div class="tiles" id="o-tiles">'+tilesRes(E)+'</div>';
-  h+='<nav class="abas" aria-label="Partes da estratégia"><button data-ir="s-comp">Caminhos</button><button data-ir="s-escala">Escala</button><button data-ir="s-custo">Custo</button><button data-ir="s-lei">Lei</button><button data-ir="s-plano">Plano</button><button data-ir="s-enviar">Enviar</button></nav>';
+  h+=painel(E,x,B);
+  h+='<nav class="abas" aria-label="Partes da estratégia"><button data-ir="s-comp">Caminhos</button><button data-ir="s-escala">Escala</button><button data-ir="s-custo">Custo</button><button data-ir="s-conv">Convenção</button><button data-ir="s-lei">Lei</button><button data-ir="s-plano">Plano</button><button data-ir="s-enviar">Enviar</button></nav>';
 
   /* caminhos */
   h+='<section id="s-comp">'+sec('rumo','','Compare os caminhos')+'<p class="sub">Toque em um caminho para ver a escala e o plano dele. A conta compara com a situação de hoje.</p>';
@@ -565,6 +720,13 @@ function tRes(){
     else h+='<span class="pil ok">No pior dia ficam '+f.pior+' (mínimo '+f.m+')</span>';
     h+='</div>';});h+='</div>';
   if(B.r===2)h+='<p class="aviso">Uma das folgas deve cair, de preferência, no domingo. Como a empresa abre todos os dias, troque os grupos de posição a cada mês para todos passarem pelo domingo.</p>';
+  var cvE=conv(),rr=cvE?cvE.e.r:{};
+  if(B.dias[6]&&!B.d12){var tot=B.fs.reduce(function(s2,f){return s2+f.q+f.h;},0),noDom=B.totV[6];
+    if(rr.domMax&&tot&&noDom/tot>rr.domMax+1e-9){var lim=Math.floor(tot*rr.domMax);
+      h+='<div class="cartao al-conv"><h3>Domingo acima do que a convenção permite</h3><p>Nesta escala <b>'+noDom+' de '+tot+' pessoas</b> trabalham no domingo. Como ninguém pode trabalhar dois domingos seguidos, no máximo <b>'+lim+'</b> podem estar escaladas em cada domingo.</p><p class="sub">Saídas: alternar os grupos a cada domingo, reduzir o mínimo de domingo ou fechar nesse dia.</p></div>';}
+    else if(rr.domMax)h+='<p class="aviso">Domingo dentro da regra da convenção: '+noDom+' de '+tot+' pessoas escaladas. Alterne quem trabalha a cada domingo.</p>';
+    if(rr.domAte)h+='<p class="aviso">Sua convenção só permite trabalhar com empregados até as '+rr.domAte+'h no domingo. Planeje o domingo como meio turno.</p>';
+    if(rr.domMulher)h+='<p class="aviso">No Rio, uma decisão da Justiça do Trabalho garante às mulheres do comércio folga no domingo a cada 15 dias. Monte o rodízio de domingo levando isso em conta.</p>';}
   h+='</section>';
 
   /* custo */
@@ -572,29 +734,35 @@ function tRes(){
   h+='<section id="s-custo">'+sec('cifra','rx','Custo com pessoal');
   if(x.pes>0)h+='<div class="cartao"><h3>Contratar ou pagar hora extra?</h3><p>Este caminho pede o equivalente a <b>'+n1(x.pes)+' pessoa'+(x.pes>=1.95?'s':'')+'</b> a mais, ou '+Math.round(horas)+' horas por semana.</p><div class="comp"><div class="cb"><div class="l"><span>Contratando</span><span>'+rs(x.custo)+'/mês</span></div><div class="t"><i style="width:'+Math.round(x.custo/mxC*100)+'%"></i></div></div><div class="cb he"><div class="l"><span>Com hora extra</span><span>'+rs(cHE)+'/mês</span></div><div class="t"><i style="width:'+Math.round(cHE/mxC*100)+'%"></i></div></div></div><p class="sub">Valores sem encargos, com salário médio de '+rs(E.sal)+'. '+(x.custo>0?'A hora extra sai cerca de '+Math.round((cHE/x.custo-1)*100)+'% mais cara.':'')+'</p></div>';
   else h+='<div class="cartao"><h3>Sem custo extra com pessoal</h3><p>Neste caminho a equipe atual cobre as horas e os mínimos.</p></div>';
-  var h0=S.h0||44;
-  if(S.acordo!=='sim'&&h0>40){var p40=E.N*(h0-40)/40,p42=E.N*Math.max(0,h0-42)/42;
-    h+='<div class="cartao"><h3>Quanto vale o acordo com o sindicato</h3><p>Sem acordo coletivo você trabalha com 40 horas por semana desde já. Com acordo, pode usar 42 horas até dezembro de 2027.</p><div class="comp"><div class="cb he"><div class="l"><span>Sem acordo (40 h)</span><span>'+n1(p40)+' pessoas a repor</span></div><div class="t"><i style="width:100%"></i></div></div><div class="cb re"><div class="l"><span>Com acordo (42 h)</span><span>'+n1(p42)+' pessoas a repor</span></div><div class="t"><i style="width:'+Math.round(p42/p40*100)+'%"></i></div></div></div><p class="sub">Diferença de cerca de <b>'+rs((p40-p42)*E.sal)+' por mês</b> em salários, no rodízio de folgas. Vale procurar o sindicato antes de fechar a escala.</p></div>';}
+  var hC=E.hN;
+  if(hC>40&&!B.d12){var p27=E.N*(hC-40)/40;
+    h+='<div class="cartao"><h3>E em dezembro de 2027?</h3><p>Em 16/12/2027 o teto cai para 40 horas por semana. Com a equipe de hoje, isso pede mais <b>'+n1(p27)+' pessoa'+(p27>=1.95?'s':'')+'</b> além do que este plano já prevê, cerca de <b>'+rs(p27*E.sal)+' por mês</b> em salários.</p><p class="sub">Vale já contratar pensando nessa segunda etapa.</p></div>';}
+  else if(hC<hNovo())h+='<div class="cartao"><h3>Sua convenção já trabalha com 40 horas</h3><p>Com o limite de '+hmin(diaMax())+' por dia em cinco dias, cada pessoa faz no máximo '+hC+' horas por semana. A etapa de 40 horas em 16/12/2027 não muda a sua conta.</p></div>';
   h+='</section>';
 
+  /* convenção */
+  h+='<section id="s-conv">'+sec('lei','az','Sua convenção coletiva')+(conv()?cConv(false):'<div class="cartao"><p>Informe a cidade no passo 1 para ver a convenção que vale para a sua empresa.</p><button class="bt sec" data-vai="1">Informar a cidade</button></div>')+'</section>';
+
   /* lei */
-  h+='<section id="s-lei">'+sec('lei','','O que a lei exige no seu caso')+'<ul class="lei">';
+  h+='<section id="s-lei">'+sec('lei','','O que a lei exige no seu caso')+'<ol class="linha-t">'+[['12/11/2026','Decisão do STF','Sem acordo, 42 horas em cinco dias de até 8h24'],['19/11/2026','Decreto 13.173','Regras do valor da hora, dos turnos e da 12x36'],['16/12/2026','Começa a 5x2','42 horas e duas folgas por semana'],['16/12/2027','Segunda etapa','Teto de 40 horas por semana']].map(function(t){var dd=t[0].split('/'),passou=new Date(+dd[2],+dd[1]-1,+dd[0])<=hoje0();return '<li class="'+(passou?'ja':'')+'"><span class="lt-d">'+t[0]+'</span><b>'+t[1]+'</b><span>'+t[2]+'</span></li>';}).join('')+'</ol><ul class="lei">';
   h+='<li><b>Duas folgas por semana a partir de 16/12/2026.</b>A Emenda Constitucional 141 acabou com a escala 6x1. Uma das folgas deve ser, de preferência, no domingo.</li>';
-  h+='<li><b>Jornada de 42 horas agora e 40 horas em 16/12/2027.</b>Sem redução de salário. O limite de 8 horas por dia continua.</li>';
-  h+='<li class="at"><b>O acordo com o sindicato muda quatro coisas.</b>Usar 42 horas na transição, passar de 8 horas por dia, juntar folgas dentro do mês em vez de dar duas toda semana e adotar a 12x36. Tudo isso depende de convenção ou acordo coletivo. Acordo individual não resolve.</li>';
-  if(S.acordo==='sim')h+='<li><b>Você tem acordo coletivo.</b>Confira se ele permite 8h24 por dia. Cláusulas com 44 horas ou uma folga só deixam de valer em 16/12/2026.</li>';
-  else h+='<li class="at"><b>'+(S.acordo==='nao'?'Você está sem acordo coletivo':'Descubra se há acordo coletivo')+'.</b>Enquanto isso, planeje com 8 horas por dia e 40 por semana.</li>';
+  h+='<li><b>42 horas agora e 40 horas em 16/12/2027.</b>Sem redução de salário, nem do piso. Quem já trabalha 40 horas ou menos não muda a jornada, mas ganha as duas folgas.</li>';
+  h+='<li class="at"><b>Sem acordo, vale a decisão do STF.</b>Liminar do ministro Flávio Dino (12/11/2026): sem convenção ou acordo até 15/12/2026, as 42 horas podem ser feitas em cinco dias de até 8h24, sem hora extra pelos 24 minutos. A decisão ainda será julgada pelo plenário do STF.</li>';
+  h+='<li class="at"><b>O que só a convenção ou o acordo coletivo permite.</b>Compensar as folgas fora da semana ou do mês (garantidas as duas por semana em média), passar de 8h24 por dia na transição, banco de horas e as condições da 12x36. Acordo individual não resolve.</li>';
+  if(S.acordo==='sim')h+='<li><b>Você tem acordo coletivo.</b>Confira se ele já foi ajustado à nova jornada. Cláusulas com 44 horas ou uma folga só deixam de valer em 16/12/2026.</li>';
+  else h+='<li class="at"><b>'+(S.acordo==='nao'?'Você está sem acordo coletivo':'Descubra se há acordo coletivo')+'.</b>Enquanto isso, planeje com 42 horas em cinco dias de até 8h24.</li>';
+  h+='<li><b>A hora fica mais cara.</b>O Decreto 13.173/2026 muda o divisor do salário: 210 com 42 horas e 200 com 40 horas (era 220). Com o mesmo salário, o valor da hora sobe cerca de 5% agora e 10% em 2027, e a hora extra e o adicional noturno acompanham.</li>';
   h+='<li class="ru"><b>Folga não dada é paga em dobro.</b>Hora acima do limite custa pelo menos 50% a mais. A fiscalização é dos auditores do trabalho.</li>';
-  if(x.id==='doze'||S.esc==='12x36')h+='<li class="at"><b>Escala 12x36.</b>A média é de cerca de 42 horas por semana: cabe na transição, mas passa do teto de 40 horas em 16/12/2027. Trate como solução com prazo.</li>';
+  if(x.id==='doze'||S.esc==='12x36')h+='<li class="at"><b>Escala 12x36.</b>Segue o que a convenção definir. Pelo decreto, se a média de horas no mês passar do teto (42 horas agora, 40 em 16/12/2027), a diferença vira folga ou hora extra. Trate como solução com prazo.</li>';
   if(x.id==='fecha'||x.id==='hora')h+='<li><b>Fechar um dia ou encurtar o horário é decisão sua.</b>A lei não obriga a abrir. O cuidado é com contratos de aluguel e de shopping que exijam horário mínimo.</li>';
   if(S.publico)h+='<li><b>Contrato com órgão público.</b>O prazo para terceirizados vai até 16/10/2027, valendo a partir do aditivo do contrato. Peça o reequilíbrio de preço.</li>';
   if(E.N<=19)h+='<li><b>Pequenos negócios.</b>A emenda prevê que uma lei futura pode criar medidas de transição para micro e pequenas empresas. Ela ainda não existe: planeje pelo prazo geral.</li>';
-  h+='<li><b>Regulamentação.</b>O governo anunciou um decreto com os detalhes, com garantia de 8 folgas a cada 30 dias. Confira se já foi publicado antes de fechar a escala.</li></ul></section>';
+  h+='<li><b>Regulamentação.</b>O Decreto 13.173/2026 foi assinado em 19/11/2026. O Ministério do Trabalho ainda vai publicar portarias sobre o repouso semanal e as escalas especiais. Confira se já saíram antes de fechar a escala.</li></ul></section>';
 
   /* plano */
   var n=diasAte(PRAZO),t0=hoje0(),rest=Math.max(n,5),et=function(f){return dm(new Date(t0.getTime()+Math.round(rest*f)*864e5));};
   var P=[[et(.1),'Conferir com os líderes o mínimo de cada função e o movimento por dia.'],
-    [et(.25),S.acordo==='sim'?'Ler a convenção coletiva com o contador e ver o que muda.':'Procurar o sindicato e o contador para saber se há acordo sobre jornada.'],
+    [et(.25),(function(){var c=conv();if(c&&c.e.st==='acordo')return 'Ler o acordo de 5x2 da sua convenção com o contador ('+c.e.sind+').';if(c&&c.e.st==='negocia')return 'Acompanhar a negociação no sindicato ('+c.e.sind+') e combinar com o contador o plano sem acordo.';return S.acordo==='sim'?'Ler a convenção coletiva com o contador e ver o que muda.':'Procurar o sindicato e o contador para saber se há acordo sobre jornada.';})()],
     [et(.4),B.d12?'Negociar a 12x36 com o sindicato e definir as duas equipes pelos nomes.':'Montar os grupos com os nomes das pessoas e ouvir preferências de folga.']];
   if(x.id==='fecha')P.push([et(.5),'Avisar os clientes de que a empresa passa a fechar '+em(x.dia)+'.']);
   if(x.id==='hora')P.push([et(.5),'Definir a hora que sai e avisar os clientes do novo horário.']);
@@ -603,6 +771,7 @@ function tRes(){
   P.push([et(.75),'Rodar a escala nova por uma semana como teste e anotar onde apertou.']);
   P.push([n>0?'16/12':et(1),'Virar a escala para todos e publicar o quadro de folgas do mês.']);
   P.push([dm(new Date(Math.max(PRAZO.getTime(),t0.getTime())+30*864e5)),'Medir 30 dias: horas extras, faltas, rotatividade e vendas ou produção por hora.']);
+  var cvP=conv();if(cvP&&cvP.e.r.fer&&cvP.e.r.fer.length)P.push(['feriados','Marcar no quadro as datas em que a convenção fecha o comércio: '+cvP.e.r.fer.join(', ')+'.']);
   P.push(['dez/27','Preparar a redução para 40 horas semanais.']);
   h+='<section id="s-plano">'+sec('plano','vd','Plano até a virada')+'<div class="plano">'+P.map(function(p,i){return '<label><input type="checkbox" data-feito="'+x.id+i+'"'+(S.feito[x.id+i]?' checked':'')+'><span class="dt">'+p[0]+'</span><span>'+p[1]+'</span></label>';}).join('')+'</div></section>';
 
@@ -617,6 +786,7 @@ function tRes(){
 var TELAS=[tInicio,tEmpresa,tFunc,tEquipe,tRegras,tRes];
 function valida(){
   if(S.tela===1&&!S.setor)return 'Escolha o setor para continuar.';
+  if(S.tela===1&&!S.cid)return 'Escolha a cidade para continuar.';
   if(S.tela===2&&S.dias.filter(Boolean).length===0)return 'Marque pelo menos um dia em que a empresa abre.';
   if(S.tela===3&&!fnOk().length)return 'Informe pelo menos uma função com pessoas.';
   return '';
@@ -665,11 +835,15 @@ function enviaPesquisa(){
     var p={id:S.rid,acesso:tipoAcesso(),setor:(SET[S.setor]&&SET[S.setor][0])||'Outro',pessoas:E.N,funcoes:fnOk().length,dias_abertos:E.D,
       dias:S.dias.map(function(a,i){return a?L[i]:'-';}).join(''),horas_dia:S.hd,escala_atual:S.esc,horas_semana:S.h0,acordo:S.acordo,salario:Math.round(S.sal||0),
       contratar:S.contratar,publico:S.publico?'sim':'não',faturamento_faixa:faixaFat(S.fat),margem:S.mg,caminho_escolhido:x.nome,melhor_caminho:m.nome,
-      pessoas_a_mais:Math.round(x.pes*10)/10,custo_mes:Math.round(x.custo),resultado_mes:Math.round(x.res),versao:'app-2026-11'};
+      pessoas_a_mais:Math.round(x.pes*10)/10,custo_mes:Math.round(x.custo),resultado_mes:Math.round(x.res),versao:'app-2026-11',cidade:S.cid||''};
     var h=JSON.stringify(p);if(h===S.env)return;S.env=h;guarda();
     fetch(U,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:h}).catch(function(){S.env='';});
   }catch(e){}
 }
+var obsAba=null;
+function abaAtiva(){if(obsAba)obsAba.disconnect();if(!('IntersectionObserver' in window))return;
+  var bs=document.querySelectorAll('.abas button');obsAba=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting)bs.forEach(function(b){b.classList.toggle('on',b.dataset.ir===x.target.id);});});},{rootMargin:'-35% 0px -60% 0px'});
+  bs.forEach(function(b){var t=document.getElementById(b.dataset.ir);if(t)obsAba.observe(t);});}
 function desenha(sobe){
   var app=$('#app');app.classList.toggle('entra',!!sobe);
   var bb=$('#barra');
@@ -681,11 +855,11 @@ function desenha(sobe){
     ld.className='lado anim';cp.className='corpo anim';
     if(k){ld.appendChild(k);}
     while(tl.firstElementChild&&tl.firstElementChild.matches('p.sub'))ld.appendChild(tl.firstElementChild);
-    ['#o-tiles','nav.abas'].forEach(function(q){var el=tl.querySelector(':scope > '+q);if(el)ld.appendChild(el);});
+    ['.painel','nav.abas'].forEach(function(q){var el=tl.querySelector(':scope > '+q);if(el)ld.appendChild(el);});
     while(tl.firstChild)cp.appendChild(tl.firstChild);
     tl.appendChild(ld);tl.appendChild(cp);}
   var tp=app.querySelector('header.topo');if(tp)document.documentElement.style.setProperty('--topoh',tp.offsetHeight+'px');
-  if(S.tela===5)agendaPesquisa();
+  if(S.tela===5){agendaPesquisa();abaAtiva();}
   var b=$('#barra');
   if(S.tela===0){b.className='barra um';b.innerHTML='<div class="in"><button class="bt" data-nav="1">Começar</button></div>';}
   else if(S.tela<5){b.className='barra';b.innerHTML='<div class="in"><button class="bt sec" data-nav="-1">Voltar</button><button class="bt" data-nav="1">'+(S.tela===4?'Ver minha estratégia':'Continuar')+'</button></div>';}
@@ -704,8 +878,8 @@ document.addEventListener('click',function(e){
   if(d.copiar){var tx=$('#tx-resumo'),m=$('#msg-copia'),cai=function(){tx.style.display='';tx.select();m.textContent='Selecione o texto abaixo e copie.';};
     if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(tx.value).then(function(){m.textContent='Resumo copiado.';},cai);else cai();return;}
   if(d.estr){S.estr=d.estr;guarda();var y=window.scrollY;desenha();window.scrollTo(0,y);return;}
-  if(d.setor){var mud=S.setor!==d.setor;S.setor=d.setor;if(mud||!S.fn.length){S.fn=SET[d.setor][1].map(function(f){return {n:f[0],q:f[1],m:f[2]};});S.mov=SET[d.setor][2].slice();S.hd=SET[d.setor][3];}}
-  else if(d.set){var v=d.v;if(d.set==='h0'||d.set==='mg')v=+v;if(d.set==='publico')v=v==='true';S[d.set]=v;}
+  if(d.setor){var mud=S.setor!==d.setor;S.setor=d.setor;if(mud||!S.fn.length){S.fn=SET[d.setor][1].map(function(f){return {n:f[0],q:f[1],m:f[2]};});S.mov=SET[d.setor][2].slice();S.hd=SET[d.setor][3];}autoAcordo();}
+  else if(d.set){var v=d.v;if(d.set==='h0'||d.set==='mg')v=+v;if(d.set==='publico')v=v==='true';S[d.set]=v;if(d.set==='acordo')S.acMan=true;}
   else if(d.dia){S.dias[+d.dia]=S.dias[+d.dia]?0:1;}
   else if(d.mov){S.mov[+d.mov]=+d.v;}
   else if(d.nst){S[d.nst]=Math.max(4,Math.min(24,(S[d.nst]||9)+(+d.d)));}
@@ -727,7 +901,8 @@ document.addEventListener('input',function(e){
   else return;
   guarda();
 });
-document.addEventListener('change',function(e){if(e.target.dataset.sl){var y=window.scrollY;desenha();window.scrollTo(0,y);}});
+function autoAcordo(){var c=conv();if(!c||S.acMan)return;S.acordo=c.e.st==='acordo'?'sim':c.e.st==='sem'||c.e.st==='negocia'?'nsei':S.acordo;}
+document.addEventListener('change',function(e){if(e.target.dataset.sel){S[e.target.dataset.sel]=e.target.value;autoAcordo();erro='';guarda();desenha();return;}if(e.target.dataset.sl){var y=window.scrollY;desenha();window.scrollTo(0,y);}});
 try{var tm=localStorage.getItem(CT);if(tm==='dark'||tm==='light')document.documentElement.setAttribute('data-theme',tm);}catch(e){}
 try{var o=JSON.parse(localStorage.getItem(CH)||'null');if(o&&o.v===1&&Array.isArray(o.fn)){var p0=padrao();for(var k in p0)if(o[k]===undefined)o[k]=p0[k];S=o;}}catch(e){}
 try{var qc=new URLSearchParams(location.search).get('codigo');if(qc){if(codOk(qc))libera(qc);else{codTmp=qc;erroCod='Esse link de acesso não é válido. Confira com a equipe.';}history.replaceState(null,'',location.pathname);}}catch(e){}
